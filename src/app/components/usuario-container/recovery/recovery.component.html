@@ -1,0 +1,49 @@
+<div class="container">
+  <app-loading *ngIf="loading"></app-loading>
+  <form [formGroup]="recoveryForm">
+    <div *ngIf="!statusSend" class="row" style="margin-top: 20%;">
+      <div class="col">
+      </div>
+      <div class="col">
+        <mat-form-field style="width: 300px">
+          <input matInput placeholder="Email" [(ngModel)]="mail" formControlName="mail" [errorStateMatcher]="matcher"
+            maxlength="60">
+        </mat-form-field>
+        <mat-error
+          *ngIf="recoveryForm.get('mail').hasError('required')  && (recoveryForm.get('mail').dirty || recoveryForm.get('mail').touched)">
+          Campo Requerido
+        </mat-error>
+        <mat-error
+          *ngIf="recoveryForm.get('mail').hasError('email')">
+           Correo incorrecto
+        </mat-error>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+        <div *ngIf="!statusSend" class="text-right" style="margin-top: 4%;">
+          <button mat-flat-button color="primary" flex="200" (click)="recoveryPassword()"
+            [disabled]="recoveryForm.status === 'VALID'? false: true">Continuar</button>
+        </div>               
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div *ngIf="statusSend" class="col text-center" style="padding: 5px; margin-top: 10%;">
+      <div class="alert alert-primary" role="alert">
+        <label style = "font-weight: bold;">Se ha enviado un mail al correo {{mail}}</label>
+        <br>
+        <label style = "font-size: 14px;">para ingresar a tu cuenta sigue las instrucciones que enviamos a tu mail.</label>
+      </div>
+    </div>
+    <div *ngIf="statusError" class="col text-center" style="padding: 5px; margin-top: 10px;">
+      <div class="alert alert-danger" role="alert">
+        <label>{{mensaggeError}}</label>
+      </div>
+    </div> 
+  </form>
+</div>

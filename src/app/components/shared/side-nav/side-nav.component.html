@@ -1,0 +1,79 @@
+<div>
+  <mat-sidenav-container class="sidenav-container" autosize>
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]='side' [opened]="(isHandset$ | async)">
+      <mat-toolbar color="primary" style="width: 250px;">Menu
+      </mat-toolbar>
+      <mat-nav-list (click)="drawer.toggle()">
+        <ul class="nav navbar-nav">
+          <li class="nav-item" routerLinkActive="active">
+            <a mat-list-item [routerLink]="'/test'">test component</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a mat-list-item [routerLink]="'/servicios'">Servicios</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a mat-list-item [routerLink]="'/recovery'">Recovery</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a mat-list-item [routerLink]="'listado/usuario'">Usuarios</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a mat-list-item [routerLink]="'movimientos/licencia'">Concesión de Licencia</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a mat-list-item [routerLink]="'movimientos/alta'">Alta de Servicio</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a mat-list-item [routerLink]="'movimientos/rectificar/licencia'">Rectificar Licencia</a>
+          </li>
+        </ul>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="mat-elevation-z6">
+      <mat-toolbar color="primary" layout="row">
+        <mat-toolbar-row>
+          <button *ngIf="isAuth()" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon aria-label="Side nav toggle icon">menu
+            </mat-icon>
+          </button>
+          <img src="../../../../assets/Image/logo_catamarca_menu.png" class="header-image ">
+          <span class="title">SageNet</span>
+          <span class="spacer"></span>
+          <div class="d-none d-sm-block"></div>
+          <div>
+            <span style="color:white; font-size: 15px; text-align: left;"> </span>
+            <div *ngIf="isAuth()">
+              <span style="text-align: left;">Hola!</span>
+              <span style="color:white; text-align: center;" class="d-none d-sm-block"> {{usuario.user.Nombre}}
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon style="margin-bottom: 10px;">account_circle</mat-icon>
+                </button>
+              </span>
+              <button mat-icon-button [matMenuTriggerFor]="menu" class="d-block d-sm-none"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>account_circle</mat-icon>
+              </button>
+            </div>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="cambiarPassword()">
+                <mat-icon>edit</mat-icon>
+                <span>Cambiar Contraseña</span>
+              </button>
+              <button mat-menu-item (click)="cerrarSession()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Cerrar Sesión</span>
+              </button>
+            </mat-menu>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <!-- Add Content Here -->
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+        <div style="margin-bottom:40px;"></div>
+        <app-footer></app-footer>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

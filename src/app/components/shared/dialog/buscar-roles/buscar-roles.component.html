@@ -1,0 +1,74 @@
+<div class="container">
+  <form [formGroup]="rolesForm">
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="w-50 p-3">
+          <input matInput placeholder="Busqueda" [(ngModel)]="Busqueda" formControlName="busqueda"
+            [errorStateMatcher]="matcher" maxlength="80">
+          <mat-error *ngIf="rolesForm.get('busqueda').hasError('minlength')">
+            Ingrese mas caracteres
+          </mat-error>
+          <mat-error *ngIf="rolesForm.get('busqueda').hasError('required')">
+            Campo Requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div *ngIf="statusError" class="alert alert-danger" role="alert">
+          <label>{{mensaggeError}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="seach-button" style="float: right;">
+      <button mat-raised-button color="primary" class="servicios-button" (click)="buscar()"
+        [disabled]="rolesForm.status === 'VALID'? false: true">Buscar</button>
+      <button mat-raised-button color="primary" class="servicios-button" (click)="cerrar()">Cerrar</button>
+    </div>
+    <div style="clear: both;"></div>
+  </form>
+</div>
+<div class="col" style="clear: both;">
+  <div *ngIf="searching">
+    <p class="text-center">Buscando...</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="idRol" matSortDirection="asc"
+        matSortDisableClear class="mat-elevation-z8">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="idRol" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> <a mat-flat-button
+              (click)="cellClicked(row.idRol)">{{row.idRol}}</a> </td>
+        </ng-container>
+
+        <!-- cue Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </th>
+          <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+        </ng-container>
+
+        <!-- Star Column -->
+        <ng-container matColumnDef="star" stickyEnd>
+          <th class="d-sm-none" mat-header-cell *matHeaderCellDef></th>
+          <td class="d-sm-none" mat-cell *matCellDef="let element">
+            <mat-icon>more_vert</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <footer class="blockquote-footer">Se encontraron <cite
+        title="Source Title"><strong>{{dataSource.data.length}}</strong></cite> registros.</footer>
+  </div>
+</div>

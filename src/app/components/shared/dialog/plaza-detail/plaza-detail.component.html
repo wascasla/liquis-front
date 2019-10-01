@@ -1,0 +1,71 @@
+<h1 mat-dialog-title>Plaza</h1>
+<div mat-dialog-content>
+  <div *ngIf="mostrar">
+    <p class="text-center">Buscando...</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div *ngIf="!mostrar" class="table-responsive">
+    <table class="table">
+      <thead style="display: none">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-style: oblique;">Info</td>
+          <td><a href="." (click)="openDialog()">Historial</a></td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">ID</td>
+          <td>{{data.detalle.ID}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">SUBORGANIZACIÓN</td>
+          <td>{{data.detalle.CUISE}} - {{data.detalle.SubOrganizacion}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">PLAN DE ESTUDIO</td>
+          <td>{{data.detalle.Carrera}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">MATERIA</td>
+          <td>{{data.detalle.EspacioCurricular}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">HORAS</td>
+          <td>{{data.detalle.Hora}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">AÑO</td>
+          <td>{{data.detalle.Curso}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">DIVISIÓN</td>
+          <td>{{data.detalle.Division}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">NIVEL</td>
+          <td>{{data.detalle.Nivel}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">TURNO</td>
+          <td>{{data.detalle.Turno}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">CARGO</td>
+          <td>{{data.detalle.CargoSalarialDefault}}</td>
+        </tr>
+        <tr>
+          <td style="font-style: oblique;">DUEÑO</td>
+          <td>{{data.detalle.ApellidosYNombres}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr>
+<div mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="onNoClick()" cdkFocusInitial>Aceptar</button>
+</div>

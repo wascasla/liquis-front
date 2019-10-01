@@ -1,0 +1,17 @@
+.footer {
+    clear: both;
+    color:white;
+    text-align:left;
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    border-top: solid 1px #eee;
+    background-color: #673AB7;
+    z-index: 300;
+  }
+  
+  .footer p {
+    color:white;
+  }
+ 

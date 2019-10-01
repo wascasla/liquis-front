@@ -1,0 +1,243 @@
+<div class="container">
+  <app-loading *ngIf="loading"></app-loading>
+  <form [formGroup]="AgenteForm" #agenteDirective="ngForm" (keydown)="onPressEnter($event,licenciaDirective)">
+    <div class="row">
+      <div class="col-sm align-self-center">
+        <mat-form-field>
+          <input matInput placeholder="Documento" [(ngModel)]="camposLicencia.Documento" formControlName="documento"
+            [errorStateMatcher]="matcher" maxlength="8">
+          <mat-error *ngIf="AgenteForm.get('documento').hasError('required')">
+            Campo Requerido
+          </mat-error>
+          <mat-error *ngIf="AgenteForm.get('documento').hasError('pattern')">
+            DNI Incorrecto.
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="primary" aria-label="Buscar Agente"
+          (click)="showTitle? false : openAgenteDialog()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput placeholder="CUISE" [(ngModel)]="camposLicencia.CUISE" formControlName="cuise"
+            [errorStateMatcher]="matcher" maxlength="15">
+          <mat-error *ngIf="AgenteForm.get('cuise').hasError('pattern')">
+            Campo Incorrecto.
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="primary" aria-label="Buscar CUISE"
+          (click)="showTitle? false : openCUISEDialog()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm align-self-center">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="camposLicencia.Fecha" placeholder="Fecha"
+            [errorStateMatcher]="matcher" formControlName="fecha">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="AgenteForm.get('fecha').hasError('required')">
+            Campo Requerido
+          </mat-error>
+          <mat-error *ngIf="AgenteForm.controls['fecha'].errors?.date">
+            Campo Incorrecto.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <button mat-raised-button color="primary" class="servicios-button" (click)="buscarServicios(licenciaDirective)"
+          [disabled]="AgenteForm.status === 'VALID'? false: true" style="margin-top: 15px;">Buscar</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <div *ngIf="statusError" class="alert alert-danger" role="alert">
+          <label>{{mensaggeError}}</label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showTitle" class="row">
+      <div class="col text-center">
+        <div class="text-uppercase" role="alert">
+          <hr>
+          Agente:
+          <strong>{{camposLicencia.Nombres}}</strong>
+          <span class="margen_8"> - DNI: {{camposLicencia.Documento}}</span>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col text-center">
+      <div *ngIf="statusErrorSubServicios" class="alert alert-danger" role="alert">
+        <label>{{mensaggeError}}</label>
+      </div>
+    </div>
+  </div>
+  <strong *ngIf="showTitle">Licencias Abiertas</strong>
+  <app-servicios-con-licencia *ngIf="showTitle" [dataSourceInput]="dsServiciosConLicencia">
+  </app-servicios-con-licencia>
+  <div style="margin-top:20px;"></div>
+  <strong *ngIf="showTitle">Servicios Activos</strong>
+  <app-servicios-sin-licencia *ngIf="showTitle" [disabledCheck]="!disableEjecutar" (onSelect)="ServicioSelect($event)"
+    [dataSourceInput]="dsServiciosConLicencia">
+  </app-servicios-sin-licencia>
+  <div class="row">
+    <div [innerHTML]="mensaggeChequeo" style="width: 100%; margin-top:10px;" role="alert"></div>
+  </div>
+  <form [formGroup]="LicenciaForm" #licenciaDirective="ngForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerFechaInicio" [(ngModel)]="camposLicencia.FechaInicio"
+                  placeholder="Fecha Inicio" [errorStateMatcher]="matcher" formControlName="fechaInicio">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaInicio></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerFechaPresentacion" [(ngModel)]="camposLicencia.FechaPresentacion"
+                  placeholder="Fecha Presentacion" [errorStateMatcher]="matcher" formControlName="fechaPresentacion">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaPresentacion"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaPresentacion></mat-datepicker>
+                <mat-error *ngIf="LicenciaForm.get('fechaPresentacion').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+                <mat-error *ngIf="LicenciaForm.controls['fechaPresentacion'].errors?.date">
+                  Campo Incorrecto.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Licencia</mat-label>
+                <mat-select formControlName="licencia" (selectionChange)="onLicenciaSelect($event)"
+                  [errorStateMatcher]="matcher" [(ngModel)]="camposLicencia.Licencia" style="font-size: 13px;">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let licencia of dsLicencias" [value]="licencia.ID">{{licencia.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="LicenciaForm.controls['licencia'].hasError('required')">Debe seleccionar una
+                  licencia
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Enfermedad</mat-label>
+                <mat-select formControlName="enfermedad" [errorStateMatcher]="matcher" style="font-size: 13px;"
+                  [(ngModel)]="camposLicencia.Enfermedad">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let enfermedad of dsEnfermedades" [value]="enfermedad.ID">
+                    {{enfermedad.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="LicenciaForm.controls['enfermedad'].hasError('required')">Debe seleccionar una
+                  enfermedad
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput placeholder="Horas" [(ngModel)]="camposLicencia.CantidadHoras" formControlName="horas"
+                  [errorStateMatcher]="matcher" maxlength="3">
+                <mat-error *ngIf="LicenciaForm.get('horas').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+                <mat-error *ngIf="LicenciaForm.get('horas').hasError('pattern')">
+                  Formato Incorrecto.
+                </mat-error>
+              </mat-form-field>
+              <div *ngIf="showInfo" class="alert alert-secondary fade show alert-dismissible"
+                style="font-size: 12px; padding: 1rem;" role="alert">
+                Si es un CARGO se debe ingesar 0(cero)
+                Si son HORAS debe ingresar la cantidad de horas correspondiente al dia de paro o injustificada.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput placeholder="Nro Certificado" [(ngModel)]="camposLicencia.NroCertificado"
+                  formControlName="NroCertificado" [errorStateMatcher]="matcher" maxlength="10">
+                <mat-error *ngIf="LicenciaForm.get('NroCertificado').hasError('pattern')">
+                  Formato Incorrecto.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field class="observaciones">
+                <textarea matInput placeholder="Observaciones" formControlName="Observaciones"
+                  [(ngModel)]="camposLicencia.Observaciones" maxlength="1000"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+                <mat-checkbox formControlName="checkFechaFin" [(ngModel)]="checkedFL"
+                  (change)="onFinLicenciaCheck($event)">¿Incluye fin de Licencia?
+                </mat-checkbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerFechaFin" [(ngModel)]="camposLicencia.FechaFin"
+                  placeholder="Fecha Fin" [errorStateMatcher]="matcher" formControlName="fechaFin"
+                  (dateChange)="onChangeFechaFin($event)">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaFin></mat-datepicker>
+                <mat-error *ngIf="LicenciaForm.get('fechaFin').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+                <mat-error *ngIf="LicenciaForm.controls['fechaFin'].errors?.date">
+                  Campo Incorrecto.
+                </mat-error>
+              </mat-form-field>
+              <span *ngIf="diasLicencia >= 0" style="font-weight: bold;"> Dias: {{diasLicencia}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="container">
+            <div class="row" style="align-items: baseline;">
+              <div class="col-sm col-4">
+                <button mat-raised-button color="primary" [disabled]="!showTitle" (click)="nuevo(agenteDirective)"
+                  style="margin-top: 15px; height: 3rem; width: 6rem;">Nuevo</button>
+              </div>
+              <div class="col-sm col-4">
+                <button mat-raised-button color="primary" (click)="chequear()"
+                  style="margin-top: 10px; height: 3rem; width: 6rem;"
+                  [disabled]="(LicenciaForm.status === 'VALID')&&(movimientoLicencia.SubServicios.length > 0)&&(disableEjecutar)&&(showTitle)? false: true">Chequear</button>
+              </div>
+              <div class="col-sm col-4">
+                <button mat-raised-button color="primary" [disabled]="disableEjecutar" (click)="ejecutar(agenteDirective)"
+                  style="margin-top: 10px; height: 3rem; width: 6rem;">Ejecutar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span>{{movimientoLicencia | json:4}}</span>
+  </form>
+</div>

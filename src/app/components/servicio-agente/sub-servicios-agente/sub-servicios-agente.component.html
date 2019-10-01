@@ -1,0 +1,78 @@
+<div class="row">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <div class="table-responsive" appAutoFocus>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="IdSubservicio" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ids </th>
+        <td mat-cell *matCellDef="let row" style="padding-right: 30px; padding-left: 20px;">
+          {{row.IdSubservicio}}
+        </td>
+      </ng-container>
+
+      <!-- FechaAlta Column -->
+      <ng-container matColumnDef="FechaAlta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Alta </th>
+        <td mat-cell *matCellDef="let row"> {{row.FechaAlta | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <!-- FechaBaja Column -->
+      <ng-container matColumnDef="FechaBaja">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Baja </th>
+        <td mat-cell *matCellDef="let row"> {{row.FechaBaja | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <!-- Baja Column -->
+      <ng-container matColumnDef="Baja">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Baja </th>
+        <td mat-cell *matCellDef="let row"> {{row.Baja}} </td>
+      </ng-container>
+
+      <!-- FechaDif Column -->
+      <ng-container matColumnDef="FechaDif">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dias </th>
+        <td mat-cell *matCellDef="let row"> {{row.FechaDif }} </td>
+      </ng-container>
+
+      <!-- LicenciaDescripcion Column -->
+      <ng-container matColumnDef="LicenciaDescripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Licencia </th>
+        <td mat-cell *matCellDef="let row"> {{row.LicenciaDescripcion}} </td>
+      </ng-container>
+
+      <!-- NroCertificado Column -->
+      <ng-container matColumnDef="NroCertificado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Certificado</th>
+        <td mat-cell *matCellDef="let row"> {{row.NroCertificado}} </td>
+      </ng-container>
+
+      <!-- FechaCarga Column -->
+      <ng-container matColumnDef="FechaCarga">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Carga </th>
+        <td mat-cell *matCellDef="let row"> {{row.FechaCarga | date: 'dd/MM/yyyy' }} </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="end" stickyEnd>
+        <th class="d-sm-none" mat-header-cell *matHeaderCellDef></th>
+        <td class="d-sm-none" mat-cell *matCellDef="let row">
+          <mat-icon>more_vert</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
+        (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+
+    </table>
+  </div>
+  <div style="width: 100%;">
+    <mat-paginator [pageSizeOptions]="[10, 25, 50]" [pageSize]="50"></mat-paginator>
+  </div>
+</div>
+<div id="target"></div>

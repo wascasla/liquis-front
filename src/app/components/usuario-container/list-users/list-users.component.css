@@ -1,0 +1,27 @@
+.table-container {
+    height: 400px;
+    width: 550px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  td.mat-column-star {
+    width: 10px;
+    padding-right: 1px;
+  }
+  
+  th.mat-column-position, td.mat-column-position {
+    padding-left: 8px;
+  }
+  
+  .mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+  }

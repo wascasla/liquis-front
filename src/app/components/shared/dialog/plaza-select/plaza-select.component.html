@@ -1,0 +1,164 @@
+<div class="container">
+  <form [formGroup]="plazaForm">
+    <div class="d-none d-sm-none d-md-block">
+      <div class="row">
+        <div class="col" style="margin-bottom: -40px;">
+          <app-autocomplete [dataSourceInput]="autoCargo" (onAutoSelect)="onAutoSelect($event, 'Cargo')"
+            [nombre]="'Cargo'" (onAutoKeyPress)="onAutoKeyPress($event, 'Cargo')"></app-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-sm-none d-md-block">
+      <div class="row">
+        <div class="col" style="margin-bottom: -40px;">
+          <app-autocomplete [dataSourceInput]="autoPlan" (onAutoSelect)="onAutoSelect($event, 'Plan')"
+            [nombre]="'Plan de Estudio'" (onAutoKeyPress)="onAutoKeyPress($event, 'Plan')"></app-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" style="margin-bottom: -40px;">
+        <app-autocomplete [dataSourceInput]="autoMateria" (onAutoSelect)="onAutoSelect($event, 'Materia')"
+          [nombre]="'Materias'" (onAutoKeyPress)="onAutoKeyPress($event, 'Materia')"></app-autocomplete>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <app-autocomplete [dataSourceInput]="autoNivel" (onAutoSelect)="onAutoSelect($event, 'Nivel')"
+          [nombre]="'Nivel'" (onAutoKeyPress)="onAutoKeyPress($event, 'Nivel')"></app-autocomplete>
+      </div>
+      <div class="col-4">
+        <div class="d-none d-sm-none d-md-block">
+          <mat-form-field class="w-50 p-3">
+            <input matInput placeholder="Año" [(ngModel)]="Anio" formControlName="anio" [errorStateMatcher]="matcher"
+              maxlength="2">
+            <mat-error *ngIf="plazaForm.get('anio').hasError('pattern')">
+              Campo Incorrecto.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div *ngIf="statusError" class="alert alert-danger" role="alert">
+          <label>{{mensaggeError}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="seach-button" style="float: right;">
+      <button mat-raised-button color="primary" class="servicios-button" (click)="buscarPlazas()"
+        [disabled]="(plazaForm.status === 'VALID')&&(!searching)? false: true">Buscar</button>
+      <button mat-raised-button color="primary" class="servicios-button" (click)="cerrar()">Cerrar</button>
+    </div>
+    <div style="clear: both;"></div>
+  </form>
+</div>
+<div class="col" style="clear: both;">
+  <div *ngIf="searching">
+    <p class="text-center">{{messageLoading}}</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="Documento" matSortDirection="asc"
+        matSortDisableClear class="mat-elevation-z8">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="ID" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> <a mat-flat-button (click)="cellClicked(row.ID)">{{row.ID}}</a> </td>
+        </ng-container>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="Historial" sticky>
+            <th mat-header-cell *matHeaderCellDef style="text-align: center"> Info </th>
+            <td mat-cell *matCellDef="let row" style="text-align: center"> 
+                <button mat-icon-button color="primary" aria-label="Historial"
+                (click)="openDialogPlazaDetail(row.ID)">
+                <mat-icon>info</mat-icon>
+              </button>                           
+            </td>
+        </ng-container>
+        
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="SubOrganizacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> SubOrganizacion </th>
+          <td mat-cell *matCellDef="let row"> {{row.SubOrganizacion}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="Carrera">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Carrera </th>
+          <td mat-cell *matCellDef="let row"> {{row.Carrera}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="EspacioCurricularDescripcion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Espacio Curricular</th>
+          <td mat-cell *matCellDef="let row"> {{row.EspacioCurricularDescripcion}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="Categoria">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cargo Salarial </th>
+          <td mat-cell *matCellDef="let row"> {{row.Categoria}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="Hora">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora </th>
+          <td mat-cell *matCellDef="let row" style="text-align: center"> {{row.Hora}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="Nivel">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nivel </th>
+          <td mat-cell *matCellDef="let row"> {{row.Nivel}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="Division">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> División </th>
+          <td mat-cell *matCellDef="let row" style="text-align: center"> {{row.Division}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="Curso">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>
+          <td mat-cell *matCellDef="let row" style="text-align: center"> {{row.Curso}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="Turno">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Turno </th>
+          <td mat-cell *matCellDef="let row" style="text-align: center"> {{row.Turno}} </td>
+        </ng-container>
+
+        <!-- Ligado Column -->
+        <ng-container matColumnDef="OrigenVacante">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Vacante </th>
+          <td mat-cell *matCellDef="let row"> {{row.OrigenVacante}} </td>
+        </ng-container>
+
+        <!-- Star Column -->
+        <ng-container matColumnDef="star" stickyEnd>
+          <th class="d-sm-none" mat-header-cell *matHeaderCellDef></th>
+          <td class="d-sm-none" mat-cell *matCellDef="let element">
+            <mat-icon>more_vert</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="highlight(row)" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (mouseover)="row.hovered = true"
+        (mouseout)="row.hovered = false"></tr>
+      </table>
+    </div>
+    <footer class="blockquote-footer">Se encontraron <cite
+        title="Source Title"><strong>{{dataSource.data.length}}</strong></cite> registros.</footer>
+  </div>
+</div>

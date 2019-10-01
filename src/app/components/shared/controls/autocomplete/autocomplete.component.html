@@ -1,0 +1,8 @@
+<mat-form-field class="w-100 p-3">
+  <input matInput class="matInput" [placeholder]="nombre" [(ngModel)]="search" (blur)="onBlur($event)" [matAutocomplete]="auto" [formControl]="autocompleteCampo" (keydown)="onKeyPress($event)">
+  <mat-autocomplete #auto="matAutocomplete"  ngDefaultControl>
+    <mat-option *ngFor="let item of filteredOptions | async" [value]="item" (onSelectionChange)="updateSelectedOption($event)" (click)="onClickSelect($event)">
+      {{ item }}	
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

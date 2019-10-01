@@ -1,0 +1,75 @@
+<div class="container">
+  <app-loading *ngIf="loading"></app-loading>
+  <form [formGroup]="ServicioForm" (keydown)="onPressEnter($event)">
+    <div class="row">
+      <div class="col-sm align-self-center">
+        <mat-form-field>
+          <input matInput placeholder="Documento" [(ngModel)]="Documento" formControlName="documento"
+            [errorStateMatcher]="matcher" maxlength="8">
+          <mat-error *ngIf="ServicioForm.get('documento').hasError('required')">
+            Campo Requerido
+          </mat-error>
+          <mat-error *ngIf="ServicioForm.get('documento').hasError('pattern')">
+            Campo Incorrecto.
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="primary" aria-label="Buscar Agente" (click)="openAgenteDialog()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput placeholder="CUISE" [(ngModel)]="CUISE" formControlName="cuise" [errorStateMatcher]="matcher"
+            maxlength="15">
+          <mat-error *ngIf="ServicioForm.get('cuise').hasError('pattern')">
+            Campo Incorrecto.
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="primary" aria-label="Buscar CUISE" (click)="openCUISEDialog()">
+            <mat-icon>search</mat-icon>
+          </button>
+      </div>
+      <div class="col-sm">
+        <mat-checkbox formControlName="Activa" [(ngModel)]="Activa">Activos</mat-checkbox>
+      </div>
+      <div class="col-sm">
+        <button mat-raised-button color="primary" class="servicios-button" (click)="buscarServicios()"
+          [disabled]="ServicioForm.status === 'VALID'? false: true">Buscar</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <div *ngIf="statusError" class="alert alert-danger" role="alert">
+          <label>{{mensaggeError}}</label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showTitle" class="row">
+      <div class="col text-center">
+        <div class="text-uppercase" role="alert">
+          <hr>
+          Agente:
+          <strong>{{uiServiciosAgentes.Nombres}}</strong>
+          <span class="margen_8">(DNI: {{uiServiciosAgentes.Documento}} - Estado: {{uiServiciosAgentes.Estado}})</span>
+          <span class="margen_8">Total Puntos: {{uiServiciosAgentes.Puntos.Puntaje}}</span>
+          <a href="#" (click)="openDialog()" class="margen_8">ANTIGUEDAD</a>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </form>
+  <app-servicios-agente *ngIf="showTitle" [dataSourceInput]="dsServicios" (onSelect)="mostrarServicio($event)">
+  </app-servicios-agente>
+  <div class="row" *ngIf="mostrarSubServicios">
+    <span class="margentop_8">Subservicios del Servicio<strong class="margen_8">{{servicioSelect}}</strong></span>
+  </div>
+  <app-sub-servicios-agente *ngIf="mostrarSubServicios" [dataSourceInput]="dsSubServicios">
+  </app-sub-servicios-agente>
+  <div class="row">
+    <div class="col text-center">
+      <div *ngIf="statusErrorSubServicios" class="alert alert-danger" role="alert">
+        <label>{{mensaggeError}}</label>
+      </div>
+    </div>
+  </div>
+</div>

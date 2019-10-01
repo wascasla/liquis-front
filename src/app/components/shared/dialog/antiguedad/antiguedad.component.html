@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Antigüedad</h1>
+<div mat-dialog-content>
+  <div *ngIf="mostrar">
+      <p class="text-center">Calculando</p>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div *ngIf="!mostrar">
+    <table class="table">
+      <caption class="text-right">Antigüedad Calculada a la Fecha: {{currentDate | date:'dd/MM/yyyy'}}</caption>
+      <thead>
+        <tr>
+          <th scope="col">Tipo</th>
+          <th scope="col">Años</th>
+          <th scope="col">Mes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data.Antiguedad">
+          <td>{{item.Tipo}}</td>
+          <td>{{item.Anios}}</td>
+          <td>{{item.Meses}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr>
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Aceptar</button>
+</div>

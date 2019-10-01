@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-spinner {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.overlay {
+    position:fixed;
+    display:block;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index:99999;
+  }
+
+  .margen_8{
+    margin-left: 8px;
+  }
+
+  .margentop_8{
+    margin-top: 8px;
+  }
+
+  .button_widht{
+    width: 100px;
+    margin: 10px;
+    margin-top: 2px;
+  }
+
+  .button_widht_nuevo{
+    width: 200px;    
+  }
+
+body{
+  background-color: #FAFAFA;
+}
+
+.background-red {
+  background-color: rgb(153, 50, 50) !important;
+  color: beige;
+}
+
+.background-nav {
+  background-color: #1D305A !important;  
+}
+
+.mat-row.hovered {
+  background: #FAFAFA;
+}
+
+.mat-row.highlighted {
+  background: #e4f0f5;
+}
+
+.tooltip-info {
+  font-size: 12px;
+}
+
+.mat-select-disabled .mat-select-value {
+  color: rgb(0, 0, 0);
+}
+
+.mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after, .mat-input-element:disabled {
+  color: rgb(0, 0, 0);
+}

@@ -1,0 +1,54 @@
+.mat-option {
+    height: 28px;
+}
+
+@media screen and (max-width: 767px) {
+    .mat-option {
+        font-size: 10px;
+    }
+
+    .matInput{
+        font-size: 10px;
+    }
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+    .mat-option {
+        font-size: 10px;
+    }
+
+    .matInput{
+        font-size: 10px;
+    }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .mat-option {
+        font-size: 10px;
+    }
+
+    .matInput{
+        font-size: 10px;
+    }
+}
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .mat-option {
+        font-size: 14px;
+    }
+
+    .matInput{
+        font-size: 14px;
+    }
+}
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+    .mat-option {
+        font-size: 14px;
+    }
+
+    .matInput{
+        font-size: 14px;
+    }
+}

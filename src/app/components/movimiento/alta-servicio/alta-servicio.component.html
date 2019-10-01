@@ -1,0 +1,314 @@
+<div class="container">
+  <app-loading *ngIf="loading"></app-loading>
+  <form [formGroup]="AgenteForm" #agenteDirective="ngForm" (keydown)="onPressEnter($event,altaDirective)">
+    <div class="row">
+      <div class="col-sm align-self-center">
+        <mat-form-field>
+          <input matInput placeholder="Documento" [(ngModel)]="camposAlta.Documento" formControlName="documento"
+            [errorStateMatcher]="matcher" maxlength="8">
+          <mat-error *ngIf="AgenteForm.get('documento').hasError('required')">
+            Campo Requerido
+          </mat-error>
+          <mat-error *ngIf="AgenteForm.get('documento').hasError('pattern')">
+            DNI Incorrecto.
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="primary" aria-label="Buscar Agente"
+          (click)="showTitle? false : openAgenteDialog()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput placeholder="CUISE" [(ngModel)]="camposAlta.CUISE" formControlName="cuise"
+            [errorStateMatcher]="matcher" maxlength="15">
+          <mat-error *ngIf="AgenteForm.get('cuise').hasError('required')">
+            Campo Requerido
+          </mat-error>
+          <mat-error *ngIf="AgenteForm.get('cuise').hasError('pattern')">
+            Campo Incorrecto.
+          </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="primary" aria-label="Buscar CUISE"
+          (click)="showTitle? false : openCUISEDialog()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm align-self-center">
+      </div>
+      <div class="col-sm">
+        <button mat-raised-button color="primary" class="servicios-button" (click)="buscarServicios(altaDirective)"
+          [disabled]="AgenteForm.status === 'VALID'? false: true" style="margin-top: 15px;">Buscar</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <div *ngIf="statusError" class="alert alert-danger" role="alert">
+          <label>{{menssageError}}</label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showTitle" class="row">
+      <div class="col text-center">
+        <div class="text-uppercase" role="alert">
+          <hr>
+          Agente:
+          <strong>{{camposAlta.Nombres}}</strong>
+          <span class="margen_8"> - DNI: {{camposAlta.Documento}}</span>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col text-center">
+      <div *ngIf="statusErrorSubServicios" class="alert alert-danger" role="alert">
+        <label>{{menssageError}}</label>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:20px;"></div>
+  <strong *ngIf="showTitle">Servicios Activos</strong>
+  <app-servicios-activos *ngIf="showTitle" [dataSourceInput]="dsServiciosActivos">
+  </app-servicios-activos>
+  <div class="row">
+    <div [innerHTML]="menssageChequeo" style="width: 100%; margin-top:10px;" role="alert"></div>
+  </div>
+  <form [formGroup]="AltaForm" #altaDirective="ngForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div *ngIf="!camposAlta.plazaSelect" class="col-sm align-self-center">
+              <span style="color: rgba(0,0,0,.54);">Buscar Plaza</span>
+              <button mat-icon-button color="primary" aria-label="Buscar Plaza"
+                (click)="showTitle? openDialogPlazaSelect(altaDirective) : false">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="camposAlta.plazaSelect" style="font-size: 13px; margin-bottom: 8px;">
+              <mat-divider></mat-divider>
+              <div style="text-align: right">
+                <button mat-button class="text-danger" (click)="(disableEjecutar && !ejecutarAlta)? confirmDialogPlaza(altaDirective) : false">
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </div>
+              <h4 mat-line class="text-success" style="cursor: pointer;"
+                (click)="openDialogPlazaDetail(camposAlta.plazaSelect.ID)">ID: {{camposAlta.plazaSelect.ID}}</h4>
+              <p mat-line>Cargo: {{camposAlta.plazaSelect.Categoria}} </p>
+              <p mat-line>Materia: {{camposAlta.plazaSelect.EspacioCurricular}} </p>
+              <p mat-line>{{camposAlta.plazaSelect.SubOrganizacion}} </p>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerfechaAlta" [(ngModel)]="camposAlta.FechaAlta"
+                  placeholder="Fecha Inicio" [errorStateMatcher]="matcher" formControlName="fechaAlta">
+                <mat-datepicker-toggle matSuffix [for]="pickerfechaAlta"></mat-datepicker-toggle>
+                <mat-datepicker #pickerfechaAlta></mat-datepicker>
+                <mat-error *ngIf="AltaForm.get('fechaAlta').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+                <mat-error *ngIf="AltaForm.controls['fechaAlta'].errors?.date">
+                  Campo Incorrecto.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Causa de Alta</mat-label>
+                <mat-select formControlName="causaAlta" [errorStateMatcher]="matcher" style="font-size: 13px;"
+                  [(ngModel)]="camposAlta.CausaAlta">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let causa of dsCausaAlta" [value]="causa.ID">
+                    {{causa.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="AltaForm.controls['causaAlta'].hasError('required')">Debe seleccionar una
+                  causa de alta
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Situacion de Revista</mat-label>
+                <mat-select formControlName="situacionRevista" [errorStateMatcher]="matcher" style="font-size: 13px;"
+                  [(ngModel)]="camposAlta.SituacionRevista" (selectionChange)="onSituacionRevistaSelect($event)">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let sr of dsSituacionRevista" [value]="sr.ID">
+                    {{sr.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="AltaForm.controls['situacionRevista'].hasError('required')">Debe seleccionar una
+                  situacion de revista
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+           
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Agrupamiento</mat-label>
+                <mat-select formControlName="agrupamiento" [errorStateMatcher]="matcher" style="font-size: 13px;"
+                  [(ngModel)]="camposAlta.IdAgrupamiento">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let item of dsAgrupamiento" [value]="item.ID">
+                    {{item.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="AltaForm.controls['agrupamiento'].hasError('required')">Debe seleccionar un
+                  agrupamiento
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field class="camposReadOnly">
+                <input matInput placeholder="Cargo Salarial" [(ngModel)]="camposAlta.CargoSalarial"
+                  formControlName="cargoSalarial" readonly="true">
+                <mat-error *ngIf="AltaForm.get('cargoSalarial').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput placeholder="Horas" [(ngModel)]="camposAlta.Horas" formControlName="horas"
+                  readonly="true">
+                <mat-error *ngIf="AltaForm.get('horas').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field class="camposReadOnly">
+                <input matInput placeholder="Nivel Ensenanza" [(ngModel)]="camposAlta.NivelEnsenanza"
+                  formControlName="nivelEnsenanza" readonly="true">
+                <mat-error *ngIf="AltaForm.get('nivelEnsenanza').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Edificio</mat-label>
+                <mat-select formControlName="edificio" (selectionChange)="onEdificioSelect($event)"
+                  [errorStateMatcher]="matcher" [(ngModel)]="camposAlta.Edificio" style="font-size: 13px;">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let edificio of dsEdificio" [value]="edificio.ID">{{edificio.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="AltaForm.controls['edificio'].hasError('required')">Debe seleccionar un
+                  edificio
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Zona</mat-label>
+                <mat-select formControlName="zona" (selectionChange)="onZonaSelect($event)"
+                  [errorStateMatcher]="matcher" [(ngModel)]="camposAlta.Zona" style="font-size: 13px;">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let zona of dsZona" [value]="zona.ID">{{zona.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="AltaForm.controls['zona'].hasError('required')">Debe seleccionar una
+                  zona
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-checkbox formControlName="checkFechaBaja" [(ngModel)]="camposAlta.isFechaBaja"
+                (change)="onFechaBajaCheck($event)">¿Incluye fecha de baja?
+              </mat-checkbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerFechaBaja" [(ngModel)]="camposAlta.FechaBaja"
+                  placeholder="Fecha Baja" [errorStateMatcher]="matcher" formControlName="fechaBaja"
+                  (dateChange)="onChangeFechaFin($event)">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaBaja"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaBaja></mat-datepicker>
+                <mat-error *ngIf="AltaForm.get('fechaBaja').hasError('required')">
+                  Campo Requerido
+                </mat-error>
+                <mat-error *ngIf="AltaForm.controls['fechaBaja'].errors?.date">
+                  Campo Incorrecto.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field style="width: inherit;">
+                <mat-label>Causa de Baja</mat-label>
+                <mat-select formControlName="causaBaja" [errorStateMatcher]="matcher" style="font-size: 13px;"
+                  [(ngModel)]="camposAlta.CausaBaja">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let causaBaja of dsCausaBaja" [value]="causaBaja.ID">
+                    {{causaBaja.Descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="AltaForm.controls['causaBaja'].hasError('required')">Debe seleccionar una
+                  causa de baja
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm align-self-center">
+              <mat-form-field class="observaciones">
+                <textarea matInput placeholder="Observaciones" formControlName="observaciones"
+                  [(ngModel)]="camposAlta.Observaciones" maxlength="1000"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="container">
+            <div class="row" style="align-items: baseline;">
+              <div class="col-sm col-4">
+                <button mat-raised-button color="primary" [disabled]="!showTitle" (click)="nuevo(agenteDirective)"
+                  style="margin-top: 15px; height: 3rem; width: 6rem;">Nuevo</button>
+              </div>
+              <div class="col-sm col-4">
+                <button mat-raised-button color="primary" (click)="chequear()"
+                  style="margin-top: 10px; height: 3rem; width: 6rem;"
+                  [disabled]="(AltaForm.status === 'VALID')&&(camposAlta.plazaSelect.ID)&&(disableEjecutar)&&(showTitle)? false: true">Chequear</button>
+              </div>
+              <div class="col-sm col-4">
+                <button mat-raised-button color="primary" [disabled]="disableEjecutar"
+                  (click)="ejecutar(agenteDirective)"
+                  style="margin-top: 10px; height: 3rem; width: 6rem;">Ejecutar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span>{{movimientoAlta | json:4}}</span>
+  </form>
+</div>

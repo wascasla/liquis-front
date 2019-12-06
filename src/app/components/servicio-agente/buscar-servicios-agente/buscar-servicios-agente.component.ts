@@ -37,7 +37,7 @@ export class BuscarServiciosAgenteComponent implements OnInit {
   servicioSelect: number;
 
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog, private sServicios: ServicioAgenteService,
-    private authService: AuthServiceService, private elementRef: ElementRef) {
+              private authService: AuthServiceService, private elementRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -51,9 +51,7 @@ export class BuscarServiciosAgenteComponent implements OnInit {
         Validators.required,
         Validators.pattern('[0-9]*'),
       ]),
-      cuise: new FormControl('', [
-        Validators.pattern('[0-9]*'),
-      ]),
+      cuise: new FormControl(''),
       Activa: new FormControl('')
     });
     console.log(this.ServicioForm);
@@ -207,4 +205,9 @@ export class BuscarServiciosAgenteComponent implements OnInit {
   private mostrarLicencias() {
     this.mostrarSubServicios = true;
   }
+
+  onCuiseSelect(event) {
+    console.log(event);
+  }
+
 }

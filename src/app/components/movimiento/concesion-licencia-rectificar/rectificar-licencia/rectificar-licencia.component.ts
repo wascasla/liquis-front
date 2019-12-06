@@ -11,6 +11,7 @@ import { CamposLicencia } from 'src/app/class/movimiento/licencia/campos-licenci
 import { AuthServiceService } from 'src/app/providers/security/auth-service.service';
 import { BuscarAgenteComponent } from 'src/app/components/shared/dialog/buscar-agente/buscar-agente.component';
 import { SearchCuiseComponent } from 'src/app/components/shared/dialog/search-cuise/search-cuise.component';
+import { ConfirmationDialogComponent } from 'src/app/components/shared/dialog/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-rectificar-licencia',
@@ -55,7 +56,7 @@ export class RectificarLicenciaComponent implements OnInit {
   ejecutarLicencia: any;
 
   constructor(public dialog: MatDialog, private sServicios: ServicioAgenteService, private authService: AuthServiceService,
-    private sReferenciales: ReferencialesService, private formBuilder: FormBuilder, private renderer: Renderer2) { }
+              private sReferenciales: ReferencialesService, private formBuilder: FormBuilder, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.movimientoLicencia = new MovimientoLicencia();
@@ -447,6 +448,27 @@ export class RectificarLicenciaComponent implements OnInit {
       this.statusError = true;
       this.disableEjecutar = true;
       this.mensaggeError = Parser.parseStyleMessageError('Se produjo un error ' + error.statusText);
+    });
+  }
+
+  confirmDialogEjecutar(busquedaDirective: FormGroupDirective) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Esta seguro que desea EJECUTAR este movimiento?',
+        buttonText: {
+          ok: 'Si',
+          cancel: 'No'
+        }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        console.log('SI');
+        this.ejecutar(busquedaDirective);
+      } else {
+        console.log('NO');
+      }
     });
   }
 

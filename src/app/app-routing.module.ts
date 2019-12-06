@@ -1,3 +1,5 @@
+import { BajaServicioRectificarComponent } from './components/movimiento/baja-servicio-rectificar/baja-servicio-rectificar.component';
+import { BajaServicioComponent } from './components/movimiento/baja-servicio/baja-servicio.component';
 import { AltaServicioComponent } from './components/movimiento/alta-servicio/alta-servicio.component';
 import { LoginComponent } from './components/login/login.component';
 import { TestComponent } from './components/test/test.component';
@@ -68,6 +70,16 @@ const routes: Routes = [{
 {
   path: 'movimientos/rectificar/licencia',
   component: RectificarLicenciaComponent,
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'movimientos/baja',
+  component: BajaServicioComponent,
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'movimientos/rectificar/baja',
+  component: BajaServicioRectificarComponent,
   canActivate: [AuthGuardService]
 },
 {

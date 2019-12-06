@@ -18,16 +18,7 @@
         </button>
       </div>
       <div class="col-sm">
-        <mat-form-field>
-          <input matInput placeholder="CUISE" [(ngModel)]="CUISE" formControlName="cuise" [errorStateMatcher]="matcher"
-            maxlength="15">
-          <mat-error *ngIf="ServicioForm.get('cuise').hasError('pattern')">
-            Campo Incorrecto.
-          </mat-error>
-        </mat-form-field>
-        <button mat-icon-button color="primary" aria-label="Buscar CUISE" (click)="openCUISEDialog()">
-            <mat-icon>search</mat-icon>
-          </button>
+        <app-user-cuise [formControl]="ServicioForm.controls['cuise']" #state [(ngModel)]="CUISE"></app-user-cuise>
       </div>
       <div class="col-sm">
         <mat-checkbox formControlName="Activa" [(ngModel)]="Activa">Activos</mat-checkbox>

@@ -5,6 +5,7 @@ import { Constantes } from '../util/Constantes';
 import { Observable } from 'rxjs/Observable';
 import { MovimientoLicencia } from '../class/movimiento/licencia/movimiento-licencia';
 import { MovimientoAlta } from '../class/movimiento/alta/movimiento-alta';
+import { MovimientoBaja } from '../class/movimiento/baja/movimiento-baja';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,17 @@ export class ServicioAgenteService {
     console.log(cuise);
     // tslint:disable-next-line:max-line-length
     return this.http.get(`${Constantes.URL_MAIN}/servicio/documento/${documento}/organizacion/${cuise}/activos/${activos}/usuario/${usuario}`);
+  }
+
+  //
+  //  Obtento todos los servicios del agente
+  //  Con causa de alta Reconocimiento de servicio
+  //
+  getAllReconocimientoServicio(documento: number, cuise: number, usuario: number): Observable<any> {
+    console.log('getAll');
+    console.log(cuise);
+    // tslint:disable-next-line:max-line-length
+    return this.http.get(`${Constantes.URL_MAIN}/servicio/documento/${documento}/organizacion/${cuise}/reconocimiento/usuario/${usuario}`);
   }
 
   //
@@ -113,7 +125,7 @@ export class ServicioAgenteService {
   }
 
    //
-  //  Ejecuta la rectificacion de la licencia
+  //  Ejecuta alta de servicio
   //
   postEjecutarAlta(altas: any): Observable<any> {
     const contentHeaders = new HttpHeaders().set('Content-Type', 'application/json');
@@ -121,4 +133,45 @@ export class ServicioAgenteService {
     altas,
       { headers: contentHeaders });
   }
+
+  //
+  //  Chequea baja de servicio
+  //
+  postChequearBaja(movimientoBaja: MovimientoBaja): Observable<any> {
+    const contentHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(Constantes.URL_MAIN + '/servicio/baja/chequeo',
+    movimientoBaja,
+      { headers: contentHeaders });
+  }
+
+  //
+  //  Ejecuta la baja de servicio
+  //
+  postEjecutarBaja(bajas: any): Observable<any> {
+    const contentHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(Constantes.URL_MAIN + '/servicio/baja/ejecutar',
+    bajas,
+      { headers: contentHeaders });
+  }
+
+   //
+  //  Chequea la rectificacion de una baja de servicio
+  //
+  postChequearRectificarBaja(movimientoBaja: MovimientoBaja): Observable<any> {
+    const contentHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(Constantes.URL_MAIN + '/servicio/baja/rectificar/chequeo',
+    movimientoBaja,
+      { headers: contentHeaders });
+  }
+
+  //
+  //  Ejecuta la rectificacion de una baja de servicio
+  //
+  postEjecutarRectificarBaja(bajas: any): Observable<any> {
+    const contentHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(Constantes.URL_MAIN + '/servicio/baja/rectificar/ejecutar',
+    bajas,
+      { headers: contentHeaders });
+  }
+
 }

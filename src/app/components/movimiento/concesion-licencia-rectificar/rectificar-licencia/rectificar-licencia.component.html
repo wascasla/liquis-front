@@ -19,6 +19,10 @@
         </button>
       </div>
       <div class="col-sm">
+        <app-user-cuise [formControl]="AgenteForm.controls['cuise']" #state [(ngModel)]="camposLicencia.CUISE">
+        </app-user-cuise>
+      </div>
+      <!--<div class="col-sm">
         <mat-form-field>
           <input matInput placeholder="CUISE" [(ngModel)]="camposLicencia.CUISE" formControlName="cuise"
             [errorStateMatcher]="matcher" maxlength="15">
@@ -30,7 +34,7 @@
           (click)="showTitle? false : openCUISEDialog()">
           <mat-icon>search</mat-icon>
         </button>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col-sm align-self-center">
@@ -234,7 +238,7 @@
               </div>
               <div class="col-sm col-4">
                 <button mat-raised-button color="primary" [disabled]="disableEjecutar"
-                  (click)="ejecutar(agenteDirective)"
+                  (click)="confirmDialogEjecutar(agenteDirective)"
                   style="margin-top: 10px; height: 3rem; width: 6rem;">Ejecutar</button>
               </div>
             </div>

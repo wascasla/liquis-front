@@ -79,6 +79,11 @@ import { AltaServicioComponent } from './components/movimiento/alta-servicio/alt
 import { PlazaSelectComponent } from './components/shared/dialog/plaza-select/plaza-select.component';
 import { AutocompleteComponent } from './components/shared/controls/autocomplete/autocomplete.component';
 import { ServiciosActivosComponent } from './components/movimiento/alta-servicio/servicios-activos/servicios-activos.component';
+import { BajaServicioComponent } from './components/movimiento/baja-servicio/baja-servicio.component';
+import { ServiciosActivosBajaComponent } from './components/movimiento/baja-servicio/servicios-activos/servicios-activos-baja.component';
+import { BajaServicioRectificarComponent } from './components/movimiento/baja-servicio-rectificar/baja-servicio-rectificar.component';
+import { ServiciosInactivosComponent } from './components/movimiento/baja-servicio-rectificar/servicios-inactivos/servicios-inactivos.component';
+import { UserCuiseComponent } from './components/shared/controls/user-cuise/user-cuise.component';
 
 // create our cost var with the information about the format that we want
 export const MY_FORMATS = {
@@ -129,7 +134,12 @@ export const MY_FORMATS = {
     AltaServicioComponent,
     PlazaSelectComponent,
     AutocompleteComponent,
-    ServiciosActivosComponent
+    ServiciosActivosComponent,
+    BajaServicioComponent,
+    ServiciosActivosBajaComponent,
+    BajaServicioRectificarComponent,
+    ServiciosInactivosComponent,
+    UserCuiseComponent,
   ],
   imports: [
     BrowserModule,

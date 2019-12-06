@@ -573,6 +573,9 @@ export class AltaServicioComponent implements OnInit {
     this.sServicios.postChequearAlta(this.movimientoAlta).subscribe(data => {
       // Obtengo los Id de cola a ejecutar
       console.log(data.diagnostico);
+      if (data.estado === 500) {
+        data.diagnostico = Parser.parseStyleMessageAlert(data.diagnostico);
+      }
       this.menssageChequeo = Parser.getMessageStyle(data.diagnostico, 'Resultado del Chequeo');
       if (data.estado === 0) {
         this.menssageChequeo = this.menssageChequeo.concat(Parser.parseStyleMessageExito(Constantes.MESSAGE_CHEQUEO_EXITO));
@@ -608,6 +611,27 @@ export class AltaServicioComponent implements OnInit {
       });
       if (!existe) {
         actual.highlighted = true;
+      }
+    });
+  }
+
+  confirmDialogEjecutar(busquedaDirective: FormGroupDirective) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Esta seguro que desea EJECUTAR este movimiento?',
+        buttonText: {
+          ok: 'Si',
+          cancel: 'No'
+        }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        console.log('SI');
+        this.ejecutar(busquedaDirective);
+      } else {
+        console.log('NO');
       }
     });
   }

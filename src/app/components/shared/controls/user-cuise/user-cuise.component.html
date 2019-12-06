@@ -1,0 +1,26 @@
+<div *ngIf="currentUser.user.Modo === '1'">
+  <mat-form-field>
+    <input matInput placeholder="CUISE" [(ngModel)]="value" [formControl]="ngControl.control"
+      [errorStateMatcher]="matcher" maxlength="15">
+    <mat-error *ngIf="ngControl.hasError('pattern')">
+      Campo Incorrecto.
+    </mat-error>
+    <mat-error *ngIf="ngControl.hasError('required')">
+      Campo Requerido
+    </mat-error>
+  </mat-form-field>
+  <button mat-icon-button color="primary" aria-label="Buscar CUISE" (click)="ngControl.control.status === 'DISABLED'? false : openCUISEDialog()">
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
+<div *ngIf="currentUser.user.Modo !== '1'" style="width: inherit;">
+  <mat-form-field style="width: 318px;">
+    <mat-select (selectionChange)="onCuiseSelect($event)" [errorStateMatcher]="matcher" [(ngModel)]="value"
+      style="font-size: 12px;" [formControl]="ngControl.control" maxlength="15">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let item of dsCUISE" [value]="item.Reparticion">{{item.suborganizacion}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="ngControl.hasError('required')">Debe seleccionar una opción</mat-error>
+  </mat-form-field>
+</div>

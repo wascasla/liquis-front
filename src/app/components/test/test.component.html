@@ -1,8 +1,13 @@
-
-
-
 <div class="container">
-    <button mat-icon-button color="primary" aria-label="Buscar Agente" (click)="openDialog()">
-        <mat-icon>search</mat-icon>
-      </button>
-  </div>
+    <form [formGroup]="form">
+        <button mat-icon-button color="primary" aria-label="Buscar Agente" (click)="openDialog()">
+            <mat-icon>search</mat-icon>
+        </button>
+        <app-user-cuise [formControl]="form.controls['cuise']" #state [(ngModel)]="CUISE"></app-user-cuise>
+        <button mat-raised-button color="primary" style="margin-top: 15px; height: 3rem; width: 6rem;"
+            [disabled]="form.invalid" (click)="onClickButton()">Nuevo</button>
+
+        <p>CUISE: {{state.value}}</p>
+        <p>CUISE: {{CUISE}}</p>
+    </form>
+</div>

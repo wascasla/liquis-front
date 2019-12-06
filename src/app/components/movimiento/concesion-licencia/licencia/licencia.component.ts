@@ -12,6 +12,7 @@ import { CamposLicencia } from 'src/app/class/movimiento/licencia/campos-licenci
 import { AuthServiceService } from 'src/app/providers/security/auth-service.service';
 import { BuscarAgenteComponent } from 'src/app/components/shared/dialog/buscar-agente/buscar-agente.component';
 import { SearchCuiseComponent } from 'src/app/components/shared/dialog/search-cuise/search-cuise.component';
+import { ConfirmationDialogComponent } from 'src/app/components/shared/dialog/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-licencia',
@@ -374,7 +375,6 @@ export class LicenciaComponent implements OnInit {
     this.diasLicencia = Parser.parseDayDiff(this.camposLicencia.FechaInicio, this.camposLicencia.FechaFin);
   }
 
-
   cleanMessage() {
     this.statusError = false;
     this.mensaggeChequeo = '';
@@ -410,6 +410,27 @@ export class LicenciaComponent implements OnInit {
       this.statusError = true;
       this.disableEjecutar = true;
       this.mensaggeError = Parser.parseStyleMessageError('Se produjo un error ' + error.statusText);
+    });
+  }
+
+  confirmDialogEjecutar(busquedaDirective: FormGroupDirective) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Esta seguro que desea EJECUTAR este movimiento?',
+        buttonText: {
+          ok: 'Si',
+          cancel: 'No'
+        }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        console.log('SI');
+        this.ejecutar(busquedaDirective);
+      } else {
+        console.log('NO');
+      }
     });
   }
 

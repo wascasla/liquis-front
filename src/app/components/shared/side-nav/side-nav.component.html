@@ -2,38 +2,68 @@
   <mat-sidenav-container class="sidenav-container" autosize>
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]='side' [opened]="(isHandset$ | async)">
-      <mat-toolbar color="primary" style="width: 250px;">Menu
+      <mat-toolbar color="primary" style="width: 270px;">Menu
       </mat-toolbar>
-      <mat-nav-list (click)="drawer.toggle()">
-        <ul class="nav navbar-nav">
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'/test'">test component</a>
-          </li>
+      <mat-nav-list>
+        <ul class="nav navbar-nav" (click)="drawer.toggle()">
           <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             <a mat-list-item [routerLink]="'/servicios'">Servicios</a>
           </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'/recovery'">Recovery</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'listado/usuario'">Usuarios</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'movimientos/licencia'">Concesión de Licencia</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'movimientos/rectificar/licencia'">Rectificar Licencia</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'movimientos/alta'">Alta de Servicio</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'movimientos/baja'">Baja de Servicio</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a mat-list-item [routerLink]="'movimientos/rectificar/baja'">Rectificar Baja de Servicio</a>
-          </li>
         </ul>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Movilidad
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="nav navbar-nav" (click)="drawer.toggle()">
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'movimientos/licencia'">Concesión de Licencia</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'movimientos/rectificar/licencia'">Rectificar Licencia</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'movimientos/alta'">Alta de Servicio</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'movimientos/baja'">Baja de Servicio</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'movimientos/rectificar/baja'">Rectificar Baja de Servicio</a>
+              </li>
+            </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Usuario
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="nav navbar-nav" (click)="drawer.toggle()">
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'listado/usuario'">Usuarios</a>
+              </li>
+            </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Test
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="nav navbar-nav" (click)="drawer.toggle()">
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'/test'">test component</a>
+              </li>
+            </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="mat-elevation-z6">
@@ -44,7 +74,7 @@
             </mat-icon>
           </button>
           <img src="../../../../assets/Image/logo_catamarca_menu.png" class="header-image ">
-          <span class="title">SageNet</span>
+          <span class="title">SageNg</span>
           <span class="spacer"></span>
           <div class="d-none d-sm-block"></div>
           <div>

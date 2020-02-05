@@ -76,6 +76,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /*login() {
+    this.sAuth.getEcho().subscribe(data => {
+      // Assign the data to the data source for the table to render
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
+  }*/
+
   onPressEnter(event: any) {
     if (event.keyCode === 13) {
       if (this.loginForm.status === 'VALID') {

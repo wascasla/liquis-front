@@ -30,7 +30,8 @@ import {
   MAT_DATE_FORMATS,
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatExpansionModule
 } from '@angular/material';
 // import { ServiciosAgenteComponent } from './components/servicios-agente/servicios-agente.component';
 import { SideNavComponent } from './components/shared/side-nav/side-nav.component';
@@ -82,8 +83,13 @@ import { ServiciosActivosComponent } from './components/movimiento/alta-servicio
 import { BajaServicioComponent } from './components/movimiento/baja-servicio/baja-servicio.component';
 import { ServiciosActivosBajaComponent } from './components/movimiento/baja-servicio/servicios-activos/servicios-activos-baja.component';
 import { BajaServicioRectificarComponent } from './components/movimiento/baja-servicio-rectificar/baja-servicio-rectificar.component';
+// tslint:disable-next-line:max-line-length
 import { ServiciosInactivosComponent } from './components/movimiento/baja-servicio-rectificar/servicios-inactivos/servicios-inactivos.component';
 import { UserCuiseComponent } from './components/shared/controls/user-cuise/user-cuise.component';
+import { ViewerPdfComponent } from './components/shared/dialog/viewer-pdf/viewer-pdf.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { RecoveryPasswordComponent } from './components/usuario-container/recovery-password/recovery-password.component';
+
 
 // create our cost var with the information about the format that we want
 export const MY_FORMATS = {
@@ -140,6 +146,8 @@ export const MY_FORMATS = {
     BajaServicioRectificarComponent,
     ServiciosInactivosComponent,
     UserCuiseComponent,
+    ViewerPdfComponent,
+    RecoveryPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -169,14 +177,16 @@ export const MY_FORMATS = {
     MatCardModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
-    {
+    /*{
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },
+    },*/
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
@@ -211,7 +221,8 @@ export const MY_FORMATS = {
     AgentesPlazaComponent,
     SearchCuiseComponent,
     AutocompleteComponent,
-    PlazaSelectComponent
+    PlazaSelectComponent,
+    ViewerPdfComponent
   ],
   bootstrap: [AppComponent]
 })

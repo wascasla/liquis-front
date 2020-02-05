@@ -1,3 +1,4 @@
+import { RecoveryPasswordComponent } from './components/usuario-container/recovery-password/recovery-password.component';
 import { BajaServicioRectificarComponent } from './components/movimiento/baja-servicio-rectificar/baja-servicio-rectificar.component';
 import { BajaServicioComponent } from './components/movimiento/baja-servicio/baja-servicio.component';
 import { AltaServicioComponent } from './components/movimiento/alta-servicio/alta-servicio.component';
@@ -36,6 +37,10 @@ const routes: Routes = [{
 {
   path: 'recovery',
   component: RecoveryComponent
+},
+{
+  path: 'recoverypassword/:codigo',
+  component: RecoveryPasswordComponent
 },
 {
   path: 'listado/usuario',

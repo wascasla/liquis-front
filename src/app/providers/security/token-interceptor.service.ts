@@ -16,13 +16,15 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.authServiceService = this.injector.get(AuthServiceService);
-    request = request.clone({
+
+    /*request = request.clone({
       setHeaders: {
         Authorization: `${this.authServiceService.getToken() == null ? '' : this.authServiceService.getToken()}`
       }
-    });
+    });*/
 
-    console.log('token desde el interceptor ' + this.authServiceService.getToken());
+    console.log('token desde el interceptor ');
+    // console.log(request);
     // this.openDialog();
     return next.handle(request).do((event: HttpEvent<any>) => {
 

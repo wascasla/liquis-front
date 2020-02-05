@@ -74,4 +74,12 @@ export class ReferencialesService {
     // tslint:disable-next-line:max-line-length
     return this.http.get(`${Constantes.URL_MAIN}/referenciales/plaza/agrupamiento/${IdCargoSalarial}`);
   }
+
+  GetReporteTest(): any {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get(`${Constantes.URL_MAIN}/test/Reporte`, { responseType: 'blob' })
+      .map(res => {
+        return new Blob([res], { type: 'application/pdf', });
+      });
+  }
 }

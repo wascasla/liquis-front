@@ -1,0 +1,13 @@
+<div mat-dialog-content class="overflow-hidden">
+    <div *ngIf="mostrar">
+        <p class="text-center">Generando</p>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div *ngIf="!mostrar">
+        <ngx-extended-pdf-viewer [src]="pdfSrc" useBrowserLocale="true" height="50vh"></ngx-extended-pdf-viewer>
+    </div>
+</div>
+<hr>
+<div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>Aceptar</button>
+</div>

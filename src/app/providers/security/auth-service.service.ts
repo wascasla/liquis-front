@@ -24,10 +24,9 @@ export class AuthServiceService {
       Username: username,
       Password: password
     });
+
     const contentHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<UserResponse>(Constantes.URL_MAIN + this.loginPath,
-      params,
-      { headers: contentHeaders });
+    return this.http.post<any>(Constantes.URL_MAIN + this.loginPath, params, { headers: contentHeaders });
   }
 
   recovery(mail: string): Observable<any> {
@@ -76,6 +75,11 @@ export class AuthServiceService {
     }
     this.router.navigate(['/login']);
     return null;
+  }
+
+  getEcho(): Observable<any> {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get('http://rrhh.catamarca.edu.ar/SageNetApiDefault/api/login/echoping');
   }
 }
 

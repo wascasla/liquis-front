@@ -4,6 +4,7 @@ import { Component, OnInit, OnChanges, forwardRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl, Validators, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UserCuiseComponent } from '../shared/controls/user-cuise/user-cuise.component';
+import { ViewerPdfComponent } from '../shared/dialog/viewer-pdf/viewer-pdf.component';
 
 @Component({
   selector: 'app-test',
@@ -82,5 +83,17 @@ export class TestComponent implements OnInit {
 
   isCuiseValid() {
     return this.CUISE ? true : false;
+  }
+
+  openDialogPdf(): boolean {
+    const dialogRef = this.dialog.open(ViewerPdfComponent, {
+      width: '800px',
+      data: { CUISE: 1000448 }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    return false;
   }
 }

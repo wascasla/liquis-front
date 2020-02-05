@@ -39,6 +39,7 @@ export class RecoveryComponent implements OnInit {
       console.log(data);
       if (data.estado === 0) {
         this.statusSend = true;
+        this.statusError = false;
       } else if (data.estado === 500) {
         this.statusError = true;
         this.mensaggeError = 'El mail ingresado no existe.';

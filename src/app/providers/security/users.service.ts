@@ -69,4 +69,16 @@ export class UsersService {
       params,
       { headers: contentHeaders });
   }
+
+  validCodeRecovery(codigo: any): Observable<any> {
+    return this.http.get(`${Constantes.URL_MAIN}/usuario/recovery/check?activationCode=${codigo}`);
+  }
+
+  cambiarPasswordByCodeRecovery(newPassword: string, code: string): Observable<any> {
+    const params = JSON.stringify({password: newPassword, activationCode: code});
+    const contentHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put<any>(Constantes.URL_MAIN + '/usuario/password/change/code',
+      params,
+      { headers: contentHeaders });
+  }
 }

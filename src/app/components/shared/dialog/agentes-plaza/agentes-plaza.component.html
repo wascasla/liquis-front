@@ -22,7 +22,7 @@
           <td>{{item.SituacionRevista}}</td>
           <td>{{item.Documento}}</td>
           <td>{{item.ApellidosYNombres}}</td>
-          <td><img mat-raised-button src='../../../../../assets/Image/{{item.Info | urlImage}}' alt='Status' Style='width: 16px;'  matTooltip="{{item.Info | urlMessage}}"
+          <td><img mat-raised-button src='./assets/Image/{{item.Info | urlImage}}' alt='Status' Style='width: 16px;'  matTooltip="{{item.Info | urlMessage}}"
             matTooltipClass="tooltip-info" matTooltipPosition="right"/></td>
           <td>{{item.FechaAlta | date: 'dd/MM/yyyy'}}</td>
           <td><span *ngIf="item.FechaBaja">{{item.FechaBaja | date: 'dd/MM/yyyy'}}</span><span *ngIf="!item.FechaBaja">Continua</span></td>                    

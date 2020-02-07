@@ -33,6 +33,7 @@ export class AltaServicioComponent implements OnInit {
   menssageChequeo: string;
   menssageEjecucion: string;
   statusErrorSS = false;
+  statusErrorSubServicios = false;
 
   // Mostrar Nombre del agente
   showTitle = false;
@@ -541,6 +542,7 @@ export class AltaServicioComponent implements OnInit {
   }
 
   nuevo(formDirective: FormGroupDirective) {
+    this.disableEjecutar = true;
     this.enabledSearchFormGroup();
     this.disabledAltaFormGroup();
     this.camposAlta = new CamposAlta();
@@ -700,6 +702,10 @@ export class AltaServicioComponent implements OnInit {
   }
 
   onZonaSelect(event) {
+    console.log(event);
+  }
+
+  onChangeFechaFin(event){
     console.log(event);
   }
 

@@ -25,7 +25,7 @@ export interface Modo {
 })
 export class UserComponent implements OnInit {
 
-  private usuario: Usuario;
+  usuario: Usuario;
 
   primerFormGroup: FormGroup;
   segundoFormGroup: FormGroup;

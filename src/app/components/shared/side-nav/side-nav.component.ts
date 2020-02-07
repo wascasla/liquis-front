@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class SideNavComponent implements OnInit {
 
   usuario: any;
+  side: any;
+  isHandset$: any;
 
   constructor(private authService: AuthServiceService, private router: Router) { }
 

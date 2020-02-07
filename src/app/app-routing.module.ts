@@ -89,7 +89,7 @@ const routes: Routes = [{
 },
 {
   path: '**',
-  component: BuscarServiciosAgenteComponent
+  component: LoginComponent
 }
 ];
 

@@ -1,6 +1,8 @@
 export abstract class Constantes {
-    static URL_MAIN = 'http://rrhh.catamarca.edu.ar/SageNetApiDefault/api';
-    // static URL_MAIN = 'http://10.1.0.175/SageNetApiDefault/api';
+    // Produccion
+    // static URL_MAIN = '/SageNetApiDefault/api';
+    // Local
+    static URL_MAIN = '/api';
     public static readonly LOGIN_USER = 'sage_user';
     public static readonly LOGIN_TOKEN = 'sage_token';
 

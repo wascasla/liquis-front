@@ -31,6 +31,7 @@ export class LicenciaComponent implements OnInit {
   mensaggeChequeo: string;
   mensaggeEjecucion: string;
   statusErrorSS = false;
+  statusErrorSubServicios = false;
 
   // Mostrar Nombre del agente
   showTitle = false;
@@ -357,6 +358,7 @@ export class LicenciaComponent implements OnInit {
   }
 
   nuevo(formDirective: FormGroupDirective) {
+    this.disableEjecutar = true;
     this.enabledSearchFormGroup();
     this.disabledLicenciaFormGroup();
     this.camposLicencia = new CamposLicencia();

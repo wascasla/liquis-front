@@ -32,6 +32,7 @@ export class BajaServicioRectificarComponent implements OnInit {
   mensaggeChequeo: string;
   mensaggeEjecucion: string;
   statusErrorSS = false;
+  statusErrorSubServicios = false;
 
   // Mostrar Nombre del agente
   showTitle = false;
@@ -394,6 +395,7 @@ export class BajaServicioRectificarComponent implements OnInit {
   }
 
   nuevo(formDirective: FormGroupDirective) {
+    this.disableEjecutar = true;
     this.enabledSearchFormGroup();
     this.disabledBajaFormGroup();
     this.camposBaja = new CamposBaja();

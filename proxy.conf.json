@@ -1,7 +1,7 @@
 {
-    "/api/*": {
+    "/api": {
         "target": "http://rrhh.catamarca.edu.ar/SageNetApiDefault",
-        "secure": false,
+        "secure": false,        
         "changeOrigin": true
-    }
+        }
 }

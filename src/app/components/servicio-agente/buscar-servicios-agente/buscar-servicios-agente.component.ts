@@ -28,6 +28,7 @@ export class BuscarServiciosAgenteComponent implements OnInit {
   showTitle = false;
   loading = false;
   statusErrorSS = false;
+  statusErrorSubServicios = false;
 
   Documento: number;
   CUISE: number;

@@ -81,7 +81,7 @@ export class Parser {
     public static parseStyleMessageError(message: string) {
         const cadena =  `<p class="alert alert-danger">${message}</p>`;
         // mensajes de error
-        if (cadena.indexOf(message) !== -1){
+        if (cadena.indexOf(message) !== -1) {
             return message;
         }
         return `<p class="alert alert-danger">${message}</p>`;

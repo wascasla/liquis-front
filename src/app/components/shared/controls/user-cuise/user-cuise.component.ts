@@ -1,6 +1,6 @@
 import {
   Component, OnInit, Output, OnChanges, EventEmitter, Renderer, ElementRef, Self,
-  ChangeDetectorRef, AfterContentChecked
+  ChangeDetectorRef, AfterContentChecked, Optional
 } from '@angular/core';
 import { SearchCuiseComponent } from '../../dialog/search-cuise/search-cuise.component';
 import { MatDialog } from '@angular/material';
@@ -24,7 +24,7 @@ export class UserCuiseComponent extends ValueAccessorBase<string> implements OnI
   @Output() onSelect = new EventEmitter();
 
   constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private authServiceService: AuthServiceService,
-              @Self() public ngControl: NgControl, private renderer: Renderer, private elementRef: ElementRef,
+              @Self() @Optional()  public ngControl: NgControl, private renderer: Renderer, private elementRef: ElementRef,
               private changeDetector: ChangeDetectorRef) {
     super();
     this.ngControl.valueAccessor = this;

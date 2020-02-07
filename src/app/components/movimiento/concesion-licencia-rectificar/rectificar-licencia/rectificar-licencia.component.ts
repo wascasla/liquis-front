@@ -30,6 +30,7 @@ export class RectificarLicenciaComponent implements OnInit {
   mensaggeChequeo: string;
   mensaggeEjecucion: string;
   statusErrorSS = false;
+  statusErrorSubServicios = false;
 
   // Mostrar Nombre del agente
   showTitle = false;
@@ -395,6 +396,7 @@ export class RectificarLicenciaComponent implements OnInit {
   }
 
   nuevo(formDirective: FormGroupDirective) {
+    this.disableEjecutar = true;
     this.enabledSearchFormGroup();
     this.disabledLicenciaFormGroup();
     this.camposLicencia = new CamposLicencia();

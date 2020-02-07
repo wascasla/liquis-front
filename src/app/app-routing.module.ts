@@ -89,7 +89,8 @@ const routes: Routes = [{
 },
 {
   path: '**',
-  component: LoginComponent
+  component: BuscarServiciosAgenteComponent,
+  canActivate: [AuthGuardService]
 }
 ];
 

@@ -18,7 +18,7 @@
     <mat-select (selectionChange)="onCuiseSelect($event)" [errorStateMatcher]="matcher" [(ngModel)]="value"
       style="font-size: 12px;" [formControl]="ngControl.control" maxlength="15">
       <mat-option></mat-option>
-      <mat-option *ngFor="let item of dsCUISE" [value]="item.Reparticion">{{item.suborganizacion}}
+      <mat-option *ngFor="let item of dsCUISE" [value]="item.cue">{{item.suborganizacion}}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="ngControl.hasError('required')">Debe seleccionar una opción</mat-error>

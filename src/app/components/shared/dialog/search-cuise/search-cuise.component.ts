@@ -14,10 +14,9 @@ export class SearchCuiseComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  agenteForm: FormGroup;
+  SubOrganizacionForm: FormGroup;
   matcher = new MyErrorStateMatcher();
   Busqueda: string;
-  Cuise: number;
   dataSource: any;
   statusError = false;
   searching = false;
@@ -48,7 +47,7 @@ export class SearchCuiseComponent implements OnInit {
   }
 
   createFormGroup() {
-    this.agenteForm = this.formBuilder.group({
+    this.SubOrganizacionForm = this.formBuilder.group({
       busqueda: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -57,14 +56,14 @@ export class SearchCuiseComponent implements OnInit {
         Validators.pattern('[0-9]*'),
       ]),
     });
-    console.log(this.agenteForm);
+    console.log(this.SubOrganizacionForm);
   }
 
   buscarSubOrganizacion() {
     this.inicializarBusqueda();
     this.sUser.getUserSuborganizacion(
       this.Busqueda,
-      this.Cuise ? this.Cuise : -1,
+      -1,
       34721520
     ).subscribe(data => {
       // Assign the data to the data source for the table to render

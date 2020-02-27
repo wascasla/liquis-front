@@ -22,7 +22,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/web.config",    
+              "src/web.config",
               {
                 "glob": "**/*",
                 "input": "node_modules/ngx-extended-pdf-viewer/assets/locale",
@@ -78,7 +78,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "nSageNet:build"
+            "browserTarget": "nSageNet:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

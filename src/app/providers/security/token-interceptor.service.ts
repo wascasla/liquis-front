@@ -13,27 +13,21 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private injector: Injector, public dialog: MatDialog) { }
 
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.authServiceService = this.injector.get(AuthServiceService);
-
-    /*request = request.clone({
+    request = request.clone({
       setHeaders: {
-        Authorization: `${this.authServiceService.getToken() == null ? '' : this.authServiceService.getToken()}`
+        Authorization: `${this.authServiceService.getToken() === null ? '' : this.authServiceService.getToken()}`
       }
-    });*/
+    });
 
-    console.log('token desde el interceptor ');
-    // console.log(request);
-    // this.openDialog();
+    // tslint:disable-next-line:max-line-length
+    console.log('token desde el interceptor');
     return next.handle(request).do((event: HttpEvent<any>) => {
-
       if (event instanceof HttpResponse) {
         // process successful responses here
         console.log('interceptor OK');
-        console.log(event);
       }
-
     }, (error: any) => {
       if (error instanceof HttpErrorResponse) {
         if ((error.status === 401)) {

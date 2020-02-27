@@ -182,11 +182,11 @@ export const MY_FORMATS = {
     NgxExtendedPdfViewerModule
   ],
   providers: [
-    /*{
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },*/
+    },
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

@@ -1,6 +1,12 @@
 <div class="container">
   <app-loading *ngIf="loading"></app-loading>
+  <mat-card>
+    <mat-card-title>SERVICIOS DEL AGENTE</mat-card-title>
+  </mat-card>
+  <p></p>
+  <mat-card>
   <form [formGroup]="ServicioForm" (keydown)="onPressEnter($event)">
+          
     <div class="row">
       <div class="col-sm align-self-center">
         <mat-form-field>
@@ -48,9 +54,17 @@
         </div>
       </div>
     </div>
+  
   </form>
+</mat-card>
+<p></p>
+<mat-card>
+  <mat-card-subtitle>Lista Servicios del Agente</mat-card-subtitle>
   <app-servicios-agente *ngIf="showTitle" [dataSourceInput]="dsServicios" (onSelect)="mostrarServicio($event)">
   </app-servicios-agente>
+</mat-card>
+<p></p>
+<mat-card>
   <div class="row" *ngIf="mostrarSubServicios">
     <span class="margentop_8">Subservicios del Servicio<strong class="margen_8">{{servicioSelect}}</strong></span>
   </div>
@@ -63,4 +77,5 @@
       </div>
     </div>
   </div>
+</mat-card>
 </div>

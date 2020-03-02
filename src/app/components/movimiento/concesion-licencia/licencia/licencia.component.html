@@ -1,5 +1,11 @@
+
 <div class="container">
   <app-loading *ngIf="loading"></app-loading>
+  <mat-card>
+    <mat-card-title>CONCECION DE LICENCIAS</mat-card-title>
+  </mat-card>
+  <p></p>
+  <mat-card>
   <form [formGroup]="AgenteForm" #agenteDirective="ngForm" (keydown)="onPressEnter($event,licenciaDirective)">
     <div class="row">
       <div class="col-sm align-self-center">
@@ -75,6 +81,7 @@
       </div>
     </div>
   </form>
+</mat-card>
   <div class="row">
     <div class="col text-center">
       <div *ngIf="statusErrorSubServicios" class="alert alert-danger" role="alert">
@@ -83,17 +90,22 @@
     </div>
   </div>
   <strong *ngIf="showTitle">Licencias Abiertas</strong>
+<mat-card *ngIf="showTitle">
   <app-servicios-con-licencia *ngIf="showTitle" [dataSourceInput]="dsServiciosConLicencia">
   </app-servicios-con-licencia>
+</mat-card>
   <div style="margin-top:20px;"></div>
   <strong *ngIf="showTitle">Servicios Activos</strong>
+  <mat-card *ngIf="showTitle">
   <app-servicios-sin-licencia *ngIf="showTitle" [disabledCheck]="!disableEjecutar" (onSelect)="ServicioSelect($event)"
     [dataSourceInput]="dsServiciosConLicencia">
   </app-servicios-sin-licencia>
+</mat-card>
   <div class="row">
     <div [innerHTML]="mensaggeChequeo" style="width: 100%; margin-top:10px;" role="alert"></div>
   </div>
   <form [formGroup]="LicenciaForm" #licenciaDirective="ngForm">
+  <mat-card>
     <div class="container">
       <div class="row">
         <div class="col-sm"></div>
@@ -244,5 +256,6 @@
       </div>
     </div>
     <span>{{movimientoLicencia | json:4}}</span>
+  </mat-card>
   </form>
 </div>

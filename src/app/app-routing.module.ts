@@ -16,6 +16,7 @@ import { BuscarServiciosAgenteComponent } from './components/servicio-agente/bus
 import { LicenciaComponent } from './components/movimiento/concesion-licencia/licencia/licencia.component';
 // tslint:disable-next-line:max-line-length
 import { RectificarLicenciaComponent } from './components/movimiento/concesion-licencia-rectificar/rectificar-licencia/rectificar-licencia.component';
+import { LiquidacionesComponent } from './components/liquidacion/liquidaciones/liquidaciones.component';
 
 const routes: Routes = [{
   path: '',
@@ -85,6 +86,11 @@ const routes: Routes = [{
 {
   path: 'movimientos/rectificar/baja',
   component: BajaServicioRectificarComponent,
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'liquidacion/liquidaciones',
+  component: LiquidacionesComponent,
   canActivate: [AuthGuardService]
 },
 {

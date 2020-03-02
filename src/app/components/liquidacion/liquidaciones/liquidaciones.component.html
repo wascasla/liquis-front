@@ -1,0 +1,29 @@
+<div class="container">
+    <app-loading *ngIf="loading"></app-loading>
+    <mat-card>
+      <mat-card-title>LIQUIDACIONES</mat-card-title>
+    </mat-card>
+    <p></p>
+    <mat-card>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Descripcion Liquidacion</mat-label>
+              <input matInput placeholder="" value="">
+              
+            </mat-form-field>
+            
+                <button mat-button>Buscar!</button>
+            
+          
+            
+          </form>
+    </mat-card>
+    <p></p>
+    <mat-card>
+        <app-lista-liquidaciones></app-lista-liquidaciones>
+    </mat-card>
+    <p></p>
+    <mat-card>
+        
+    </mat-card>
+</div>

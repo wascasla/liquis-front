@@ -89,6 +89,9 @@ import { UserCuiseComponent } from './components/shared/controls/user-cuise/user
 import { ViewerPdfComponent } from './components/shared/dialog/viewer-pdf/viewer-pdf.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { RecoveryPasswordComponent } from './components/usuario-container/recovery-password/recovery-password.component';
+import { LiquidacionesComponent } from './components/liquidacion/liquidaciones/liquidaciones.component';
+import { ListaLiquidacionesComponent } from './components/liquidacion/liquidaciones/lista-liquidaciones/lista-liquidaciones.component';
+import { PeridosLiquidacionComponent } from './components/liquidacion/peridos-liquidacion/peridos-liquidacion.component';
 
 
 // create our cost var with the information about the format that we want
@@ -147,7 +150,10 @@ export const MY_FORMATS = {
     ServiciosInactivosComponent,
     UserCuiseComponent,
     ViewerPdfComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    LiquidacionesComponent,
+    ListaLiquidacionesComponent,
+    PeridosLiquidacionComponent
   ],
   imports: [
     BrowserModule,

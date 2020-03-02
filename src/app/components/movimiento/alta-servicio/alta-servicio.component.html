@@ -1,5 +1,10 @@
 <div class="container">
   <app-loading *ngIf="loading"></app-loading>
+  <mat-card>
+    <mat-card-title>ALTA DE SERVICIOS</mat-card-title>
+  </mat-card>
+  <p></p>
+  <mat-card>
   <form [formGroup]="AgenteForm" #agenteDirective="ngForm" (keydown)="onPressEnter($event,altaDirective)">
     <div class="row">
       <div class="col-sm align-self-center">
@@ -66,6 +71,7 @@
       </div>
     </div>
   </form>
+</mat-card>
   <div class="row">
     <div class="col text-center">
       <div *ngIf="statusErrorSubServicios" class="alert alert-danger" role="alert">
@@ -74,12 +80,15 @@
     </div>
   </div>
   <div style="margin-top:20px;"></div>
+  <mat-card *ngIf="showTitle">
   <strong *ngIf="showTitle">Servicios Activos</strong>
   <app-servicios-activos *ngIf="showTitle" [dataSourceInput]="dsServiciosActivos">
   </app-servicios-activos>
+</mat-card>
   <div class="row">
     <div [innerHTML]="menssageChequeo" style="width: 100%; margin-top:10px;" role="alert"></div>
   </div>
+  <mat-card>
   <form [formGroup]="AltaForm" #altaDirective="ngForm">
     <div class="container">
       <div class="row">
@@ -316,4 +325,5 @@
     </div>
     <span>{{movimientoAlta | json:4}}</span>
   </form>
+</mat-card>
 </div>

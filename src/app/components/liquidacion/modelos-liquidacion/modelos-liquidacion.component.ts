@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ListaLiquidacionesComponent } from './lista-liquidaciones/lista-liquidaciones.component';
 import { FormGroup, Validators, FormControl, FormBuilder, FormGroupDirective } from '@angular/forms';
 
 @Component({
-  selector: 'app-liquidaciones',
-  templateUrl: './liquidaciones.component.html',
-  styleUrls: ['./liquidaciones.component.css']
+  selector: 'app-modelos-liquidacion',
+  templateUrl: './modelos-liquidacion.component.html',
+  styleUrls: ['./modelos-liquidacion.component.css']
 })
-export class LiquidacionesComponent implements OnInit {
+export class ModelosLiquidacionComponent implements OnInit {
 
-  LiquidacionesForm: FormGroup;
+  ModelosForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -18,7 +17,7 @@ export class LiquidacionesComponent implements OnInit {
   }
 
   createLiquidacionesFormGroup() {
-    this.LiquidacionesForm = this.formBuilder.group({
+    this.ModelosForm = this.formBuilder.group({
       periodo: new FormControl({ value: '', disabled: true }, []),
       tipo: new FormControl({ value: '', disabled: true }, []),
       descripcion: new FormControl({ value: '', disabled: true }, []),

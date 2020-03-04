@@ -1,13 +1,13 @@
 <div class="container">
     <app-loading *ngIf="loading"></app-loading>
     <mat-card>
-      <mat-card-title>LIQUIDACIONES</mat-card-title>
+      <mat-card-title>Periodos Liquidaciones</mat-card-title>
     </mat-card>
     <p></p>
     <mat-card>
         <form >
             <mat-form-field >
-              <mat-label>Descripcion Liquidacion</mat-label>
+              <mat-label>Descripcion Periodo</mat-label>
               <input matInput  placeholder="ingrese una Descripcion" value="">
               
             </mat-form-field>
@@ -21,11 +21,11 @@
     </mat-card>
     <p></p>
     <mat-card>
-        <app-lista-liquidaciones></app-lista-liquidaciones>
+        <app-lista-periodos></app-lista-periodos>
     </mat-card>
     <p></p>
     <mat-card>
-        <mat-card-title>Registro de Liquidacion</mat-card-title>
+        <mat-card-title>Registro de Periodos de Liquidacion</mat-card-title>
 
         <form [formGroup]="LiquidacionesForm" #licenciaDirective="ngForm">
           <mat-card>
@@ -145,3 +145,4 @@
         
     </mat-card>
 </div>
+

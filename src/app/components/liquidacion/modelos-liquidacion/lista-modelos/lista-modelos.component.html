@@ -9,21 +9,26 @@
   
       <!-- Name Column -->
       <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+        <th mat-header-cell *matHeaderCellDef> descripcion </th>
         <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
       </ng-container>
   
       <!-- Weight Column -->
-      <ng-container matColumnDef="periodo">
-        <th mat-header-cell *matHeaderCellDef> Periodo Liq </th>
-        <td mat-cell *matCellDef="let element"> {{element.periodo}} </td>
+      <ng-container matColumnDef="escalafon">
+        <th mat-header-cell *matHeaderCellDef> escalafon </th>
+        <td mat-cell *matCellDef="let element"> {{element.escalafon}} </td>
       </ng-container>
   
       <!-- Symbol Column -->
-      <ng-container matColumnDef="doblesf">
-        <th mat-header-cell *matHeaderCellDef> Doble Sal Fam </th>
-        <td mat-cell *matCellDef="let element"> {{element.doblesf}} </td>
+      <ng-container matColumnDef="moneda">
+        <th mat-header-cell *matHeaderCellDef> moneda </th>
+        <td mat-cell *matCellDef="let element"> {{element.moneda}} </td>
       </ng-container>
+
+      <ng-container matColumnDef="fechabaja">
+        <th mat-header-cell *matHeaderCellDef> fechabaja </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechabaja}} </td>
+      </ng-container>     
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -31,3 +36,5 @@
   
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
+
+

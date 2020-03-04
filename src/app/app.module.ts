@@ -31,7 +31,8 @@ import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
   MatAutocompleteModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatRadioModule
 } from '@angular/material';
 // import { ServiciosAgenteComponent } from './components/servicios-agente/servicios-agente.component';
 import { SideNavComponent } from './components/shared/side-nav/side-nav.component';
@@ -91,7 +92,12 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { RecoveryPasswordComponent } from './components/usuario-container/recovery-password/recovery-password.component';
 import { LiquidacionesComponent } from './components/liquidacion/liquidaciones/liquidaciones.component';
 import { ListaLiquidacionesComponent } from './components/liquidacion/liquidaciones/lista-liquidaciones/lista-liquidaciones.component';
-import { PeridosLiquidacionComponent } from './components/liquidacion/peridos-liquidacion/peridos-liquidacion.component';
+import { PeriodosLiquidacionComponent } from './components/liquidacion/periodos-liquidacion/periodos-liquidacion.component';
+import { ListaPeriodosComponent } from './components/liquidacion/periodos-liquidacion/lista-periodos/lista-periodos.component';
+import { ModelosLiquidacionComponent } from './components/liquidacion/modelos-liquidacion/modelos-liquidacion.component';
+import { ListaModelosComponent } from './components/liquidacion/modelos-liquidacion/lista-modelos/lista-modelos.component';
+import { LiquidarComponent } from './components/liquidacion/liquidar/liquidar.component';
+import { HistorialLiquidacionesComponent } from './components/liquidacion/liquidar/historial-liquidaciones/historial-liquidaciones.component';
 
 
 // create our cost var with the information about the format that we want
@@ -153,7 +159,12 @@ export const MY_FORMATS = {
     RecoveryPasswordComponent,
     LiquidacionesComponent,
     ListaLiquidacionesComponent,
-    PeridosLiquidacionComponent
+    PeriodosLiquidacionComponent,
+    ListaPeriodosComponent,
+    ModelosLiquidacionComponent,
+    ListaModelosComponent,
+    LiquidarComponent,
+    HistorialLiquidacionesComponent
   ],
   imports: [
     BrowserModule,
@@ -185,7 +196,8 @@ export const MY_FORMATS = {
     MatDatepickerModule,
     MatAutocompleteModule,
     MatExpansionModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    MatRadioModule
   ],
   providers: [
     {

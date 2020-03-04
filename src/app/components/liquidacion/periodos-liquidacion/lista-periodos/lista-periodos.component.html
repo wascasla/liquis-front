@@ -1,0 +1,49 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="mes">
+        <th mat-header-cell *matHeaderCellDef> Mes </th>
+        <td mat-cell *matCellDef="let element"> {{element.mes}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="ano">
+        <th mat-header-cell *matHeaderCellDef> Año </th>
+        <td mat-cell *matCellDef="let element"> {{element.ano}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="desde">
+        <th mat-header-cell *matHeaderCellDef> Desde </th>
+        <td mat-cell *matCellDef="let element"> {{element.desde}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hasta">
+        <th mat-header-cell *matHeaderCellDef> Hasta </th>
+        <td mat-cell *matCellDef="let element"> {{element.hasta}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cerrado">
+        <th mat-header-cell *matHeaderCellDef> Cerrado </th>
+        <td mat-cell *matCellDef="let element"> {{element.cerrado}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+

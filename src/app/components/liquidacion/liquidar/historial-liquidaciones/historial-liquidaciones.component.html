@@ -1,0 +1,57 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef> usuario </th>
+        <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="liquidacion">
+        <th mat-header-cell *matHeaderCellDef> liquidacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.liquidacion}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="inicio">
+        <th mat-header-cell *matHeaderCellDef> inicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.inicio}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="fin">
+        <th mat-header-cell *matHeaderCellDef> fin </th>
+        <td mat-cell *matCellDef="let element"> {{element.fin}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="horainicio">
+        <th mat-header-cell *matHeaderCellDef> horainicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.horainicio}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="horafin">
+        <th mat-header-cell *matHeaderCellDef> horafin </th>
+        <td mat-cell *matCellDef="let element"> {{element.horafin}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="tiempo">
+        <th mat-header-cell *matHeaderCellDef> tiempo </th>
+        <td mat-cell *matCellDef="let element"> {{element.tiempo}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="procesados">
+        <th mat-header-cell *matHeaderCellDef> procesados </th>
+        <td mat-cell *matCellDef="let element"> {{element.procesados}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>

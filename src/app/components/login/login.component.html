@@ -1,5 +1,7 @@
 <div class="container">
   <app-loading *ngIf="loading"></app-loading>
+  <mat-card>
+    <mat-card-title>Login</mat-card-title>
   <form [formGroup]="loginForm" (keydown)="onPressEnter($event)">
     <div class="row" style="margin-top: 20%;">
      <div class="col">
@@ -50,4 +52,5 @@
       </div>
     </div>
   </form>
+</mat-card>
 </div>

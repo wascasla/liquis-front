@@ -1,31 +1,11 @@
 <div class="container">
     <app-loading *ngIf="loading"></app-loading>
     <mat-card>
-      <mat-card-title>LIQUIDACIONES</mat-card-title>
+      <mat-card-title>Gestión de Liquidación</mat-card-title>
     </mat-card>
     <p></p>
     <mat-card>
-        <form >
-            <mat-form-field >
-              <mat-label>Descripcion Liquidacion</mat-label>
-              <input matInput  placeholder="ingrese una Descripcion" value="">
-              
-            </mat-form-field>
-            
-            <button mat-raised-button color="primary" 
-            style="margin-top: 15px; height: 3rem; width: 6rem;">Buscar!</button>
-            
-          
-            
-          </form>
-    </mat-card>
-    <p></p>
-    <mat-card>
-        <app-lista-liquidaciones></app-lista-liquidaciones>
-    </mat-card>
-    <p></p>
-    <mat-card>
-        <mat-card-title>Registro de Liquidacion</mat-card-title>
+        
 
         <form [formGroup]="LiquidacionesForm" #licenciaDirective="ngForm">
           <mat-card>
@@ -33,16 +13,7 @@
               <div class="row">
                 <div class="col-sm"></div>
                 <div class="col-sm-6">
-                  <div class="row">
-                    <div class="col-sm align-self-center">
-                      <mat-form-field>
-                        <input matInput [matDatepicker]="pickerFechaInicio" [(ngModel)]="periodo"
-                          placeholder="periodo" [errorStateMatcher]="matcher" formControlName="periodo">
-                        <mat-datepicker-toggle matSuffix [for]="pickerFechaInicio"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerFechaInicio></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-                  </div>
+                  
                   <!--<div class="row">
                     <div class="col-sm align-self-center">
                       <mat-form-field>
@@ -62,7 +33,7 @@
                   <div class="row">
                     <div class="col-sm align-self-center">
                       <mat-form-field style="width: inherit;">
-                        <mat-label>Tipo</mat-label>
+                        <mat-label>Liquidacion:</mat-label>
                         <mat-select formControlName="tipo"  [(ngModel)]="tipo" style="font-size: 13px;">
                           <mat-option>Debe seleccionar una
                             opcion</mat-option>
@@ -75,7 +46,7 @@
                   <div class="row">
                     <div class="col-sm align-self-center">
                       <mat-form-field style="width: inherit;">
-                        <mat-label>Enfermedad</mat-label>
+                        <mat-label>SAF:</mat-label>
                         <mat-select formControlName="dobleSalarioFamiliar" [errorStateMatcher]="matcher" style="font-size: 13px;"
                           [(ngModel)]="dobleSalarioFamiliar">
                           <mat-option></mat-option>
@@ -88,6 +59,7 @@
                   <div class="row">
                     <div class="col-sm align-self-center">
                       <mat-form-field>
+                        <mat-label>Suborganizacion:</mat-label>
                         <input matInput placeholder="descripcion" [(ngModel)]="descripcion" formControlName="descripcion"
                           [errorStateMatcher]="matcher" maxlength="3">
                         
@@ -98,6 +70,7 @@
                   <div class="row">
                     <div class="col-sm align-self-center">
                       <mat-form-field>
+                        <mat-label>Agente:</mat-label>
                         <input matInput placeholder="liquidaFonid" [(ngModel)]="liquidaFonid"
                           formControlName="liquidaFonid" [errorStateMatcher]="matcher" maxlength="10">
                         
@@ -106,11 +79,19 @@
                   </div>
                   <div class="row">
                     <div class="col-sm align-self-center">
-                      <mat-form-field class="observaciones">
-                        <textarea matInput placeholder="acreditadaEnBanco" formControlName="acreditadaEnBanco"
-                          [(ngModel)]="acreditadaEnBanco" maxlength="1000"></textarea>
-                      </mat-form-field>
+                        <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="1">Liquidar</mat-radio-button>
+                            <mat-radio-button value="2">Completar</mat-radio-button>
+                            <mat-radio-button value="1">Re Liquidar</mat-radio-button>
+                            <mat-radio-button value="2">Anular</mat-radio-button>
+                            <mat-radio-button value="1">Limpiar</mat-radio-button>
+                            <mat-radio-button value="2">Eliminar</mat-radio-button>
+                            <mat-radio-button value="1">Cnfirmar</mat-radio-button>
+                            <mat-radio-button value="2">Acreditada</mat-radio-button>
+                        </mat-radio-group>
                     </div>
+
+                   
                   </div>
                   
                   
@@ -120,28 +101,31 @@
                     <div class="row" style="align-items: baseline;">
                       <div class="col-sm col-4">
                         <button mat-raised-button color="primary" 
-                          style="margin-top: 15px; height: 3rem; width: 6rem;">Agregar</button>
+                          style="margin-top: 15px; height: 3rem; width: 6rem;">Validar</button>
                       </div>
                       <div class="col-sm col-4">
                         <button mat-raised-button color="primary" 
-                          style="margin-top: 10px; height: 3rem; width: 6rem;">Modificar</button>
+                          style="margin-top: 10px; height: 3rem; width: 6rem;">Ejecutar</button>
                       </div>
                       <div class="col-sm col-4">
                         <button mat-raised-button color="primary" 
                           style="margin-top: 10px; height: 3rem; width: 6rem;">Cancelar</button>
-                      </div>
-                      <div class="col-sm col-4">
-                        <button mat-raised-button color="primary" 
-                          style="margin-top: 10px; height: 3rem; width: 6rem;">Nuevo</button>
-                      </div>
+                      </div>                      
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <span>{{movimientoLicencia | json:4}}</span>
+            
           </mat-card>
           </form>
         
     </mat-card>
+    <p></p>
+    <mat-card>
+        <app-historial-liquidaciones></app-historial-liquidaciones>
+    </mat-card>
+    <p></p>
+    
 </div>
+

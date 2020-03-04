@@ -17,6 +17,9 @@ import { LicenciaComponent } from './components/movimiento/concesion-licencia/li
 // tslint:disable-next-line:max-line-length
 import { RectificarLicenciaComponent } from './components/movimiento/concesion-licencia-rectificar/rectificar-licencia/rectificar-licencia.component';
 import { LiquidacionesComponent } from './components/liquidacion/liquidaciones/liquidaciones.component';
+import { PeriodosLiquidacionComponent } from './components/liquidacion/periodos-liquidacion/periodos-liquidacion.component';
+import { ModelosLiquidacionComponent } from './components/liquidacion/modelos-liquidacion/modelos-liquidacion.component';
+import { LiquidarComponent } from './components/liquidacion/liquidar/liquidar.component';
 
 const routes: Routes = [{
   path: '',
@@ -91,6 +94,21 @@ const routes: Routes = [{
 {
   path: 'liquidacion/liquidaciones',
   component: LiquidacionesComponent,
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'liquidacion/periodos',
+  component: PeriodosLiquidacionComponent,
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'liquidacion/modelos',
+  component: ModelosLiquidacionComponent,
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'liquidacion/liquidar',
+  component: LiquidarComponent,
   canActivate: [AuthGuardService]
 },
 {

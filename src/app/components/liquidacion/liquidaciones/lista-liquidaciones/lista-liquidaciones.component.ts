@@ -11,7 +11,7 @@ export class ListaLiquidacionesComponent implements OnInit {
 
   constructor() { }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['id', 'descripcion', 'doblesf', 'periodo'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -23,31 +23,31 @@ export class ListaLiquidacionesComponent implements OnInit {
 }
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  descripcion: string;
+  id: number;
+  doblesf: string;
+  periodo: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+  {id: 1, descripcion: 'Febrero 2020 - Complementaria estadística y Censos', doblesf: 'S', periodo: 'febrero 2020'},
+  {id: 2, descripcion: 'Marzo 2020 - COMPLETA', doblesf: 'S', periodo: 'Marzo 2020'},
+  {id: 3, descripcion: 'Enero 2020 - COMPLETA', doblesf: 'N', periodo: 'enero 2020'},
+  {id: 4, descripcion: 'Febrero 2020 - COMPLETA', doblesf: 'S', periodo: 'febrero 2020'},
+  {id: 5, descripcion: 'Enero 2020 - Fonavi', doblesf: 'S', periodo: 'enero 2020'},
+  {id: 6, descripcion: 'Enero 2020 - Recupero Gasto', doblesf: 'S', periodo: 'enero 2020'},
+  {id: 7, descripcion: 'Dic/19-Ene/20 - Complementaria 3 Funcionarios', doblesf: 'S', periodo: 'diciembre 2020'},
+  {id: 8, descripcion: 'Dic/19-Ene/20 - Complementaria 2 Funcionarios+Otros	', doblesf: 'S', periodo: 'diciembre 2020'},
+  {id: 9, descripcion: 'Febrero 2019 - COMPLETA', doblesf: 'S', periodo: 'febrero 2019'},
+  {id: 10, descripcion: 'Marzo 2019 - COMPLETA', doblesf: 'S', periodo: 'marzo 2019'},
+  {id: 11, descripcion: 'Abril 2019 - COMPLETA', doblesf: 'S', periodo: 'abril 2019'},
+  {id: 12, descripcion: 'Mayo 2019 - COMPLETA', doblesf: 'S', periodo: 'mayo 2019'},
+  {id: 13, descripcion: 'Junio 2019 - COMPLETA', doblesf: 'S', periodo: 'junio 2019'},
+  {id: 14, descripcion: 'Julio 2019 - COMPLETA', doblesf: 'S', periodo: 'julio 2019'},
+  {id: 15, descripcion: 'Setiembre 2019 - COMPLETA', doblesf: 'S', periodo: 'setiembre 2019'},
+  {id: 16, descripcion: 'Octubre 2019 - COMPLETA', doblesf: 'N', periodo: 'octubre 2019'},
+  {id: 17, descripcion: 'Noviembre 2019 - COMPLETA', doblesf: 'S', periodo: 'noviembre 2019'},
+  {id: 18, descripcion: 'Diciembre 2019 - COMPLETA', doblesf: 'S', periodo: 'diciembre 2019'},
+  {id: 19, descripcion: 'Enero 2018 - COMPLETA', doblesf: 'S', periodo: 'enero 2018'},
+  {id: 20, descripcion: 'Febrero 2018 - COMPLETA', doblesf: 'S', periodo: 'febrero 2018'},
 ];

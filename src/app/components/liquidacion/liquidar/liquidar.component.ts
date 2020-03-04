@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ListaLiquidacionesComponent } from './lista-liquidaciones/lista-liquidaciones.component';
 import { FormGroup, Validators, FormControl, FormBuilder, FormGroupDirective } from '@angular/forms';
 
 @Component({
-  selector: 'app-liquidaciones',
-  templateUrl: './liquidaciones.component.html',
-  styleUrls: ['./liquidaciones.component.css']
+  selector: 'app-liquidar',
+  templateUrl: './liquidar.component.html',
+  styleUrls: ['./liquidar.component.css']
 })
-export class LiquidacionesComponent implements OnInit {
+export class LiquidarComponent implements OnInit {
 
   LiquidacionesForm: FormGroup;
 

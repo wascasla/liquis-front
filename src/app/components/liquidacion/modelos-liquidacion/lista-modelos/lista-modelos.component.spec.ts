@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PeridosLiquidacionComponent } from './peridos-liquidacion.component';
+import { ListaModelosComponent } from './lista-modelos.component';
 
-describe('PeridosLiquidacionComponent', () => {
-  let component: PeridosLiquidacionComponent;
-  let fixture: ComponentFixture<PeridosLiquidacionComponent>;
+describe('ListaModelosComponent', () => {
+  let component: ListaModelosComponent;
+  let fixture: ComponentFixture<ListaModelosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PeridosLiquidacionComponent ]
+      declarations: [ ListaModelosComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PeridosLiquidacionComponent);
+    fixture = TestBed.createComponent(ListaModelosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

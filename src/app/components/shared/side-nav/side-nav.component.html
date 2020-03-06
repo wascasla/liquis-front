@@ -40,6 +40,29 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
+                Liquidacion
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="nav navbar-nav" (click)="drawer.toggle()">
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'liquidacion/liquidaciones'">Liquidaciones</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'liquidacion/periodos'">Periodos</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'liquidacion/modelos'">Modelos</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'liquidacion/liquidar'">Liquidar</a>
+              </li>              
+            </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
                 Usuario
               </mat-panel-title>
             </mat-expansion-panel-header>

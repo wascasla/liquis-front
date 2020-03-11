@@ -20,6 +20,7 @@ import { LiquidacionesComponent } from './components/liquidacion/liquidaciones/l
 import { PeriodosLiquidacionComponent } from './components/liquidacion/periodos-liquidacion/periodos-liquidacion.component';
 import { ModelosLiquidacionComponent } from './components/liquidacion/modelos-liquidacion/modelos-liquidacion.component';
 import { LiquidarComponent } from './components/liquidacion/liquidar/liquidar.component';
+import { PersonasComponent } from './components/legajo/personas/personas.component';
 
 const routes: Routes = [{
   path: '',
@@ -109,6 +110,11 @@ const routes: Routes = [{
 {
   path: 'liquidacion/liquidar',
   component: LiquidarComponent,
+  canActivate: [AuthGuardService]
+},
+{
+  path: 'legajo/personas',
+  component: PersonasComponent,
   canActivate: [AuthGuardService]
 },
 {

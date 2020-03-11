@@ -14,6 +14,21 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
+                Legajo
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="nav navbar-nav" (click)="drawer.toggle()">
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'legajo/personas'">Personas</a>
+              </li>
+                            
+            </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
                 Movilidad
               </mat-panel-title>
             </mat-expansion-panel-header>

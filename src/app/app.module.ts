@@ -98,6 +98,8 @@ import { ModelosLiquidacionComponent } from './components/liquidacion/modelos-li
 import { ListaModelosComponent } from './components/liquidacion/modelos-liquidacion/lista-modelos/lista-modelos.component';
 import { LiquidarComponent } from './components/liquidacion/liquidar/liquidar.component';
 import { HistorialLiquidacionesComponent } from './components/liquidacion/liquidar/historial-liquidaciones/historial-liquidaciones.component';
+import { PersonasComponent } from './components/legajo/personas/personas.component';
+import { ListadoPersonasComponent } from './components/legajo/personas/listado-personas/listado-personas.component';
 
 
 // create our cost var with the information about the format that we want
@@ -164,7 +166,9 @@ export const MY_FORMATS = {
     ModelosLiquidacionComponent,
     ListaModelosComponent,
     LiquidarComponent,
-    HistorialLiquidacionesComponent
+    HistorialLiquidacionesComponent,
+    PersonasComponent,
+    ListadoPersonasComponent
   ],
   imports: [
     BrowserModule,

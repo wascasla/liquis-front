@@ -100,6 +100,15 @@ import { LiquidarComponent } from './components/liquidacion/liquidar/liquidar.co
 import { HistorialLiquidacionesComponent } from './components/liquidacion/liquidar/historial-liquidaciones/historial-liquidaciones.component';
 import { PersonasComponent } from './components/legajo/personas/personas.component';
 import { ListadoPersonasComponent } from './components/legajo/personas/listado-personas/listado-personas.component';
+import { AgentesComponent } from './components/legajo/agentes/agentes.component';
+import { ListadoAgentesComponent } from './components/legajo/agentes/listado-agentes/listado-agentes.component';
+import { MenuAgenteComponent } from './components/legajo/agentes/opciones/menu-agente/menu-agente.component';
+import { AgenteComponent } from './components/legajo/agentes/opciones/agente/agente.component';
+import { AfiliacionesComponent } from './components/legajo/agentes/opciones/afiliaciones/afiliaciones.component';
+import { AntiguedadesComponent } from './components/legajo/agentes/opciones/antiguedades/antiguedades.component';
+import { TitulosComponent } from './components/legajo/agentes/opciones/titulos/titulos.component';
+import { FamiliaresACargoComponent } from './components/legajo/agentes/opciones/familiares-acargo/familiares-acargo.component';
+import { PrenatalComponent } from './components/legajo/agentes/opciones/prenatal/prenatal.component';
 
 
 // create our cost var with the information about the format that we want
@@ -168,7 +177,16 @@ export const MY_FORMATS = {
     LiquidarComponent,
     HistorialLiquidacionesComponent,
     PersonasComponent,
-    ListadoPersonasComponent
+    ListadoPersonasComponent,
+    AgentesComponent,
+    ListadoAgentesComponent,
+    MenuAgenteComponent,
+    AgenteComponent,
+    AfiliacionesComponent,
+    AntiguedadesComponent,
+    TitulosComponent,
+    FamiliaresACargoComponent,
+    PrenatalComponent
   ],
   imports: [
     BrowserModule,

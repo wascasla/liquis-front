@@ -1,0 +1,42 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Elegir Id</th>
+      <td mat-cell *matCellDef="let element">
+        <a
+          fxFlexFill
+          [routerLink]="'/legajo/agentes/agente/'"
+          class="mat-row-link"
+          >{{ element.id }}</a
+        >
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="dni">
+      <th mat-header-cell *matHeaderCellDef>Dni</th>
+      <td mat-cell *matCellDef="let element">{{ element.dni }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="nombres">
+      <th mat-header-cell *matHeaderCellDef>Nombres</th>
+      <td mat-cell *matCellDef="let element">{{ element.nombres }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef>Apellido</th>
+      <td mat-cell *matCellDef="let element">{{ element.apellido }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

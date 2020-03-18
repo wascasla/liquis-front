@@ -1,0 +1,36 @@
+<div class="container">
+  <app-loading *ngIf="loading"></app-loading>
+  <mat-card>
+    <mat-card-title>AGENTES</mat-card-title>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>DNI</mat-label>
+        <input matInput placeholder="ingrese una DNI" value="" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="ingrese una Nombre" value="" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput placeholder="ingrese una Apellido" value="" />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        style="margin-top: 15px; height: 3rem; width: 6rem;"
+      >
+        Buscar!
+      </button>
+    </form>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <app-listado-agentes></app-listado-agentes>
+  </mat-card>
+  <p></p>
+</div>

@@ -1,32 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormBuilder, FormGroupDirective } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormGroup,
+  Validators,
+  FormControl,
+  FormBuilder,
+  FormGroupDirective
+} from "@angular/forms";
 
 @Component({
-  selector: 'app-personas',
-  templateUrl: './personas.component.html',
-  styleUrls: ['./personas.component.css']
+  selector: "app-personas",
+  templateUrl: "./personas.component.html",
+  styleUrls: ["./personas.component.css"]
 })
 export class PersonasComponent implements OnInit {
+  PersonaForm: FormGroup;
 
-  LiquidacionesForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.createLiquidacionesFormGroup();
+    this.createPersonaFormGroup();
   }
 
-  createLiquidacionesFormGroup() {
-    this.LiquidacionesForm = this.formBuilder.group({
-      periodo: new FormControl({ value: '', disabled: true }, []),
-      tipo: new FormControl({ value: '', disabled: true }, []),
-      descripcion: new FormControl({ value: '', disabled: true }, []),
-      dobleSalarioFamiliar: new FormControl({ value: '', disabled: true }, []),
-      liquidaFonid: new FormControl({ value: '', disabled: true }, []),
-      acreditadaEnBanco: new FormControl({ value: '', disabled: true }, []),
-      estado: new FormControl(false),
-      liquidacionAnterior: new FormControl({ value: '', disabled: true }, null)
+  createPersonaFormGroup() {
+    this.PersonaForm = this.formBuilder.group({
+      apellido: new FormControl({ value: "", disabled: true }, []),
+      nombres: new FormControl({ value: "", disabled: true }, []),
+      sexo: new FormControl({ value: "", disabled: true }, []),
+      fechaNacimiento: new FormControl({ value: "", disabled: true }, []),
+      localidadNacimiento: new FormControl({ value: "", disabled: true }, []),
+      nacionalidad: new FormControl({ value: "", disabled: true }, []),
+      tipoDocumento: new FormControl(false),
+      nroDocumento: new FormControl({ value: "", disabled: true }, null),
+      cuil: new FormControl({ value: "", disabled: true }, null),
+      email: new FormControl({ value: "", disabled: true }, null),
+      telefonoFijo: new FormControl({ value: "", disabled: true }, null),
+      telefonoMovil: new FormControl({ value: "", disabled: true }, null),
+      fechaBaja: new FormControl({ value: "", disabled: true }, null)
     });
   }
-
 }

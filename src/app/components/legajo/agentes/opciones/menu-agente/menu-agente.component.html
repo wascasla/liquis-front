@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/legajo/agentes/agente/'">
+      Agente
+    </button>
+    <button mat-button [routerLink]="'/legajo/agentes/afiliaciones/'">
+      Afiliaciones
+    </button>
+    <button mat-button [routerLink]="'/legajo/agentes/antiguedades/'">
+      Antiguedades
+    </button>
+    <button mat-button [routerLink]="'/legajo/agentes/titulos/'">
+      Titulos
+    </button>
+    <button mat-button [routerLink]="'/legajo/agentes/familiaresACargo/'">
+      Familiares A Cargo
+    </button>
+    <button mat-button [routerLink]="'/legajo/agentes/prenatal/'">
+      Prenatal
+    </button>
+    <button mat-button>
+      <a
+        fxFlexFill
+        [routerLink]="'/legajo/agentes/antiguedades/'"
+        class="mat-row-link"
+      >
+        Afiliaciones link
+      </a>
+    </button>
+  </mat-card-actions>
+</mat-card>

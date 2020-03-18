@@ -1,12 +1,21 @@
 <div>
   <mat-sidenav-container class="sidenav-container" autosize>
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]='side' [opened]="(isHandset$ | async)">
-      <mat-toolbar color="primary" style="width: 270px;">Menu
-      </mat-toolbar>
+    <mat-sidenav
+      #drawer
+      class="sidenav"
+      fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="side"
+      [opened]="isHandset$ | async"
+    >
+      <mat-toolbar color="primary" style="width: 270px;">Menu </mat-toolbar>
       <mat-nav-list>
         <ul class="nav navbar-nav" (click)="drawer.toggle()">
-          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <a mat-list-item [routerLink]="'/servicios'">Servicios</a>
           </li>
         </ul>
@@ -21,7 +30,9 @@
               <li class="nav-item" routerLinkActive="active">
                 <a mat-list-item [routerLink]="'legajo/personas'">Personas</a>
               </li>
-                            
+              <li class="nav-item" routerLinkActive="active">
+                <a mat-list-item [routerLink]="'legajo/agentes'">Agentes</a>
+              </li>
             </ul>
           </mat-expansion-panel>
         </mat-accordion>
@@ -34,19 +45,31 @@
             </mat-expansion-panel-header>
             <ul class="nav navbar-nav" (click)="drawer.toggle()">
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'movimientos/licencia'">Concesión de Licencia</a>
+                <a mat-list-item [routerLink]="'movimientos/licencia'"
+                  >Concesión de Licencia</a
+                >
               </li>
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'movimientos/rectificar/licencia'">Rectificar Licencia</a>
+                <a
+                  mat-list-item
+                  [routerLink]="'movimientos/rectificar/licencia'"
+                  >Rectificar Licencia</a
+                >
               </li>
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'movimientos/alta'">Alta de Servicio</a>
+                <a mat-list-item [routerLink]="'movimientos/alta'"
+                  >Alta de Servicio</a
+                >
               </li>
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'movimientos/baja'">Baja de Servicio</a>
+                <a mat-list-item [routerLink]="'movimientos/baja'"
+                  >Baja de Servicio</a
+                >
               </li>
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'movimientos/rectificar/baja'">Rectificar Baja de Servicio</a>
+                <a mat-list-item [routerLink]="'movimientos/rectificar/baja'"
+                  >Rectificar Baja de Servicio</a
+                >
               </li>
             </ul>
           </mat-expansion-panel>
@@ -60,17 +83,25 @@
             </mat-expansion-panel-header>
             <ul class="nav navbar-nav" (click)="drawer.toggle()">
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'liquidacion/liquidaciones'">Liquidaciones</a>
+                <a mat-list-item [routerLink]="'liquidacion/liquidaciones'"
+                  >Liquidaciones</a
+                >
               </li>
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'liquidacion/periodos'">Periodos</a>
+                <a mat-list-item [routerLink]="'liquidacion/periodos'"
+                  >Periodos</a
+                >
               </li>
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'liquidacion/modelos'">Modelos</a>
+                <a mat-list-item [routerLink]="'liquidacion/modelos'"
+                  >Modelos</a
+                >
               </li>
               <li class="nav-item" routerLinkActive="active">
-                <a mat-list-item [routerLink]="'liquidacion/liquidar'">Liquidar</a>
-              </li>              
+                <a mat-list-item [routerLink]="'liquidacion/liquidar'"
+                  >Liquidar</a
+                >
+              </li>
             </ul>
           </mat-expansion-panel>
         </mat-accordion>
@@ -107,26 +138,46 @@
     <mat-sidenav-content class="mat-elevation-z6">
       <mat-toolbar color="primary" layout="row">
         <mat-toolbar-row>
-          <button *ngIf="isAuth()" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-            <mat-icon aria-label="Side nav toggle icon">menu
-            </mat-icon>
+          <button
+            *ngIf="isAuth()"
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+          >
+            <mat-icon aria-label="Side nav toggle icon">menu </mat-icon>
           </button>
           <!--<img src="./assets/Image/logo_catamarca_menu.png" class="header-image ">-->
-          <img src="" class="header-image ">
+          <img src="" class="header-image " />
           <span class="title">LiquiS</span>
           <span class="spacer"></span>
           <div class="d-none d-sm-block"></div>
           <div>
-            <span style="color:white; font-size: 15px; text-align: left;"> </span>
+            <span style="color:white; font-size: 15px; text-align: left;">
+            </span>
             <div *ngIf="isAuth()">
               <span style="text-align: left;">Hola!</span>
-              <span style="color:white; text-align: center;" class="d-none d-sm-block"> {{usuario.user.Nombre}}
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                  <mat-icon style="margin-bottom: 10px;">account_circle</mat-icon>
+              <span
+                style="color:white; text-align: center;"
+                class="d-none d-sm-block"
+              >
+                {{ usuario.user.Nombre }}
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Example icon-button with a menu"
+                >
+                  <mat-icon style="margin-bottom: 10px;"
+                    >account_circle</mat-icon
+                  >
                 </button>
               </span>
-              <button mat-icon-button [matMenuTriggerFor]="menu" class="d-block d-sm-none"
-                aria-label="Example icon-button with a menu">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                class="d-block d-sm-none"
+                aria-label="Example icon-button with a menu"
+              >
                 <mat-icon>account_circle</mat-icon>
               </button>
             </div>

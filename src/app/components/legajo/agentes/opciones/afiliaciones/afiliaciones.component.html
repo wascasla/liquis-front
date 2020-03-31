@@ -1,1 +1,157 @@
-<p>afiliaciones works!</p>
+<div class="container">
+  <app-loading *ngIf="loading"></app-loading>
+  <mat-card>
+    <mat-card-title>AFILIACIONES AGENTE</mat-card-title>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <mat-card-title>Agente: Juan Perez</mat-card-title>
+    <mat-card-subtitle>Documento: 212541</mat-card-subtitle>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <app-menu-agente></app-menu-agente>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <mat-card-title>Lista de Afiliaciones del agente</mat-card-title>
+    <app-lista-afiliaciones-agente></app-lista-afiliaciones-agente>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <mat-card-title>Registro de Afiliaciones de un Agente</mat-card-title>
+
+    <form [formGroup]="afiliacionAgenteForm" #licenciaDirective="ngForm">
+      <mat-card>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm-6">
+              <!--legajo-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="codigoDescuento"
+                      [(ngModel)]="lecodigoDescuentogajo"
+                      formControlName="legajo"
+                      [errorStateMatcher]="matcher"
+                      maxlength="3"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--Fecha fechaAlta-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      [matDatepicker]="pickerFechaAlta"
+                      [(ngModel)]="fechaAlta"
+                      placeholder="fechaAlta"
+                      [errorStateMatcher]="matcher"
+                      formControlName="fechaAlta"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="pickerFechaAlta"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFechaAlta></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--Fecha fechaBaja-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      [matDatepicker]="pickerFechaBaja"
+                      [(ngModel)]="fechaBaja"
+                      placeholder="fechaBaja"
+                      [errorStateMatcher]="matcher"
+                      formControlName="fechaBaja"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="pickerFechaBaja"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFechaBaja></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!--observaciones-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="observaciones"
+                      [(ngModel)]="observaciones"
+                      formControlName="observaciones"
+                      [errorStateMatcher]="matcher"
+                      maxlength="3"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!--<div class="row">
+                    <div class="col-sm align-self-center">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="pickerFechaPresentacion" [(ngModel)]="tipo"
+                          placeholder="Fecha Presentacion" [errorStateMatcher]="matcher" formControlName="fechaPresentacion">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFechaPresentacion"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFechaPresentacion></mat-datepicker>
+                        <mat-error *ngIf="LicenciaForm.get('fechaPresentacion').hasError('required')">
+                          Campo Requerido
+                        </mat-error>
+                        <mat-error *ngIf="LicenciaForm.controls['fechaPresentacion'].errors?.date">
+                          Campo Incorrecto.
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>-->
+            </div>
+            <div class="col-sm">
+              <div class="container">
+                <div class="row" style="align-items: baseline;">
+                  <div class="col-sm col-4">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      style="margin-top: 15px; height: 3rem; width: 6rem;"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                  <div class="col-sm col-4">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      style="margin-top: 10px; height: 3rem; width: 6rem;"
+                    >
+                      Modificar
+                    </button>
+                  </div>
+                  <div class="col-sm col-4">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      style="margin-top: 10px; height: 3rem; width: 6rem;"
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </mat-card>
+</div>

@@ -32,147 +32,147 @@ import { PrenatalComponent } from "./components/legajo/agentes/opciones/prenatal
 const routes: Routes = [
   {
     path: "",
-    component: BuscarServiciosAgenteComponent
+    component: BuscarServiciosAgenteComponent,
   },
   {
     path: "test",
-    component: TestComponent
+    component: TestComponent,
   },
   {
     path: "login",
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: "servicios",
     component: BuscarServiciosAgenteComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "recovery",
-    component: RecoveryComponent
+    component: RecoveryComponent,
   },
   {
     path: "recoverypassword/:codigo",
-    component: RecoveryPasswordComponent
+    component: RecoveryPasswordComponent,
   },
   {
     path: "listado/usuario",
     component: ListUsersComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "usuario/add",
     component: UserComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "usuario/edit/:IdUser",
     component: UserComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "changepasword",
     component: ChangePasswordComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "movimientos/alta",
     component: AltaServicioComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "movimientos/licencia",
     component: LicenciaComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "movimientos/rectificar/licencia",
     component: RectificarLicenciaComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "movimientos/baja",
     component: BajaServicioComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "movimientos/rectificar/baja",
     component: BajaServicioRectificarComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "liquidacion/liquidaciones",
     component: LiquidacionesComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "liquidacion/periodos",
     component: PeriodosLiquidacionComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "liquidacion/modelos",
     component: ModelosLiquidacionComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "liquidacion/liquidar",
     component: LiquidarComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "legajo/personas",
     component: PersonasComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "legajo/agentes",
     component: AgentesComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "legajo/agentes/agente",
     component: AgenteComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "legajo/agentes/afiliaciones",
     component: AfiliacionesComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "legajo/agentes/antiguedades",
     component: AntiguedadesComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "legajo/agentes/titulos",
     component: TitulosComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
-    path: "legajo/agentes/familiaresAcargo",
+    path: "legajo/agentes/familiaresACargo",
     component: FamiliaresACargoComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "legajo/agentes/prenatal",
     component: PrenatalComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "**",
     component: BuscarServiciosAgenteComponent,
-    canActivate: [AuthGuardService]
-  }
+    canActivate: [AuthGuardService],
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      anchorScrolling: "enabled"
-    })
+      anchorScrolling: "enabled",
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

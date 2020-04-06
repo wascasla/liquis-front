@@ -1,0 +1,59 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Position Column -->
+    <ng-container matColumnDef="agente">
+      <th mat-header-cell *matHeaderCellDef>agente</th>
+      <td mat-cell *matCellDef="let element">{{ element.agente }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="fechaEmision">
+      <th mat-header-cell *matHeaderCellDef>fechaEmision</th>
+      <td mat-cell *matCellDef="let element">{{ element.fechaEmision }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fun">
+      <th mat-header-cell *matHeaderCellDef>F.U.N</th>
+      <td mat-cell *matCellDef="let element">{{ element.fun }}</td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fechaProbableParto">
+      <th mat-header-cell *matHeaderCellDef>fechaProbableParto</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.fechaProbableParto }}
+      </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fechaFallecimiento">
+      <th mat-header-cell *matHeaderCellDef>fechaFallecimiento</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.fechaFallecimiento }}
+      </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="nacio">
+      <th mat-header-cell *matHeaderCellDef>Nacio</th>
+      <td mat-cell *matCellDef="let element">{{ element.nacio }}</td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fechaCarga">
+      <th mat-header-cell *matHeaderCellDef>fechaCarga</th>
+      <td mat-cell *matCellDef="let element">{{ element.fechaCarga }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="observaciones">
+      <th mat-header-cell *matHeaderCellDef>observaciones</th>
+      <td mat-cell *matCellDef="let element">{{ element.observaciones }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

@@ -1,1 +1,156 @@
-<p>titulos works!</p>
+<div class="container">
+  <app-loading *ngIf="loading"></app-loading>
+  <mat-card>
+    <mat-card-title>TITULOS AGENTE</mat-card-title>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <mat-card-title>Agente: Juan Perez</mat-card-title>
+    <mat-card-subtitle>Documento: 212541</mat-card-subtitle>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <app-menu-agente></app-menu-agente>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <mat-card-title>Lista de Titulos del agente</mat-card-title>
+    <app-lista-titulos-agente></app-lista-titulos-agente>
+  </mat-card>
+  <p></p>
+  <mat-card>
+    <mat-card-title>Registro de Titulos de un Agente</mat-card-title>
+
+    <form [formGroup]="titulosAgenteForm" #licenciaDirective="ngForm">
+      <mat-card>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm-6">
+              <!--titulo-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field style="width: inherit;">
+                    <mat-label>Titulo</mat-label>
+                    <mat-select
+                      formControlName="titulo"
+                      [(ngModel)]="titulo"
+                      style="font-size: 13px;"
+                    >
+                      <mat-option>Debe seleccionar una opcion</mat-option>
+                      <mat-option
+                        >Licenciado en Sistemas de Informacion</mat-option
+                      >
+                      <mat-option>Abogado</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--años-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="duracion"
+                      [(ngModel)]="duracion"
+                      formControlName="duracion"
+                      [errorStateMatcher]="matcher"
+                      maxlength="3"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- fechaEgreso-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      [matDatepicker]="pickerFechaAlta"
+                      [(ngModel)]="fechaEgreso"
+                      placeholder="fechaEgreso"
+                      [errorStateMatcher]="matcher"
+                      formControlName="fechaEgreso"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="pickerFechaAlta"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFechaAlta></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!--institucion-->
+              <div class="row">
+                <div class="col-sm align-self-center">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="institucion"
+                      [(ngModel)]="institucion"
+                      formControlName="institucion"
+                      [errorStateMatcher]="matcher"
+                      maxlength="3"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!--<div class="row">
+                    <div class="col-sm align-self-center">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="pickerFechaPresentacion" [(ngModel)]="tipo"
+                          placeholder="Fecha Presentacion" [errorStateMatcher]="matcher" formControlName="fechaPresentacion">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFechaPresentacion"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFechaPresentacion></mat-datepicker>
+                        <mat-error *ngIf="LicenciaForm.get('fechaPresentacion').hasError('required')">
+                          Campo Requerido
+                        </mat-error>
+                        <mat-error *ngIf="LicenciaForm.controls['fechaPresentacion'].errors?.date">
+                          Campo Incorrecto.
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>-->
+            </div>
+            <div class="col-sm">
+              <div class="container">
+                <div class="row" style="align-items: baseline;">
+                  <div class="col-sm col-4">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      style="margin-top: 15px; height: 3rem; width: 6rem;"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                  <div class="col-sm col-4">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      style="margin-top: 10px; height: 3rem; width: 6rem;"
+                    >
+                      Modificar
+                    </button>
+                  </div>
+                  <div class="col-sm col-4">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      style="margin-top: 10px; height: 3rem; width: 6rem;"
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </mat-card>
+</div>
